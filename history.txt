@@ -1,0 +1,20 @@
+#########################################################################################################
+
+Version 1.00	1999/01/20
+
+contains some calls to remote control windows applications
+
+#########################################################################################################
+
+Version 1.01	2000/10/15
+
+Fixed Bugs:
+
+
+New:
+
+contains version information
+supports perl 5.6
+ready to install via ppm
+
+

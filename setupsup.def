@@ -1,0 +1,6 @@
+LIBRARY setupsup
+
+VERSION 1.0
+
+EXPORTS
+	boot_Win32__Setupsup

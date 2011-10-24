@@ -28,8 +28,8 @@ LANGUAGE LANG_GERMAN, SUBLANG_GERMAN
 //
 
 VS_VERSION_INFO VERSIONINFO
- FILEVERSION 1,0,1,0
- PRODUCTVERSION 1,0,1,0
+ FILEVERSION SETUPSUP_VERSION_NUM
+ PRODUCTVERSION SETUPSUP_VERSION_NUM
  FILEFLAGSMASK 0x3fL
 #ifdef _DEBUG
  FILEFLAGS 0x1L
@@ -47,14 +47,14 @@ BEGIN
             VALUE "Comments", "Please send all comments or suggestions to jens.helberg@de.bosch.com.\0"
             VALUE "CompanyName", "Jens Helberg\0"
             VALUE "FileDescription", "Remote control for windows applications.\0"
-            VALUE "FileVersion", "1, 0, 1, 0\0"
+            VALUE "FileVersion", SETUPSUP_VERSION "\0"
             VALUE "InternalName", "Setupsup\0"
             VALUE "LegalCopyright", "You can use this module under the GNU public licence.\0"
             VALUE "LegalTrademarks", "\0"
             VALUE "OriginalFilename", "setupsup.dll\0"
             VALUE "PrivateBuild", "\0"
             VALUE "ProductName", "\0"
-            VALUE "ProductVersion", "1, 0, 1, 0\0"
+            VALUE "ProductVersion", SETUPSUP_VERSION "\0"
             VALUE "SpecialBuild", "\0"
         END
     END
@@ -73,18 +73,18 @@ END
 // TEXTINCLUDE
 //
 
-1 TEXTINCLUDE DISCARDABLE 
+1 TEXTINCLUDE DISCARDABLE
 BEGIN
     "resource.h\0"
 END
 
-2 TEXTINCLUDE DISCARDABLE 
+2 TEXTINCLUDE DISCARDABLE
 BEGIN
     "#include ""afxres.h""\r\n"
     "\0"
 END
 
-3 TEXTINCLUDE DISCARDABLE 
+3 TEXTINCLUDE DISCARDABLE
 BEGIN
     "\r\n"
     "\0"

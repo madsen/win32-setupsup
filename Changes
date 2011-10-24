@@ -1,0 +1,17 @@
+Revision history for Perl extension Win32::Setupsup.
+
+1.02  Mon Oct 24 2011
+	- repackaged by Christopher J. Madsen <perl@cjmweb.net>
+	- install with normal "perl Makefile.PL ; nmake ; nmake install"
+	- now requires at least Perl 5.6
+
+
+1.01  Sun Oct 15 2000
+	- contains version information
+	- supports perl 5.6
+	- ready to install via ppm
+
+
+1.00  Wed Jan 20 1999
+	- original version
+	- contains some calls to remote control windows applications

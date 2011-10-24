@@ -1,0 +1,21 @@
+Changes
+list.cpp
+list.h
+Makefile.PL
+MANIFEST			This list of files
+META.yml
+misc.cpp
+misc.h
+plmisc.cpp
+plmisc.h
+README
+resource.h
+resource.rc
+restrict.txt
+setupsup.cpp
+setupsup.h
+Setupsup.pm
+t/Win32-Setupsup.t
+usererror.h
+wstring.cpp
+wstring.h

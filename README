@@ -1,0 +1,40 @@
+Win32-Setupsup version 1.02
+===========================
+
+This module helps you to control other Windows programs.  It's
+especially useful for programs that don't provide their own scripting
+language or OLE Automation support.
+
+The Win32::CtrlGUI module provides a more user-friendly wrapper around
+Win32::Setupsup.  You should probably use it instead of trying to use
+Win32::Setupsup directly.
+
+This release (by Christopher J. Madsen) simply repackages
+Win32::Setupsup 1.01 to support the normal Makefile.PL method of
+installation.  If you've already got version 1.01 installed, there's
+no point in upgrading.
+
+
+INSTALLATION
+
+To install this module type the following:
+
+   perl Makefile.PL
+   nmake
+   nmake test
+   nmake install
+
+
+DEPENDENCIES
+
+Requires Windows NT 4, Windows 2000, or Windows XP
+
+
+COPYRIGHT AND LICENCE
+
+Copyright (C) 1999 by Jens Helberg
+
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.

@@ -17,7 +17,8 @@ resource.rc
 restrict.txt
 setupsup.cpp
 setupsup.h
-t/Win32-Setupsup.t
+t/00-load.t
+t/10-registry.t
 t/release-pod-coverage.t
 t/release-pod-syntax.t
 usererror.h

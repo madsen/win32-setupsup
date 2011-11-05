@@ -22,12 +22,12 @@
 
 Node::Node()
 {
-	// prev, next and data are null
-	m_Prev = m_Next = NULL;
-	m_Data = NULL;
+  // prev, next and data are null
+  m_Prev = m_Next = NULL;
+  m_Data = NULL;
 
-	// don't do an auto delete
-	m_AutoDel = FALSE;
+  // don't do an auto delete
+  m_AutoDel = FALSE;
 }
 
 
@@ -43,15 +43,15 @@ Node::Node()
 
 Node::Node(PNode prev, PNode next, PVOID data, BOOL autoDel)
 {
-	// connect node
-	Prev(prev);
-	Next(next);
+  // connect node
+  Prev(prev);
+  Next(next);
 	
-	// set data value
-	m_Data = data;
+  // set data value
+  m_Data = data;
 
-	// set auto delete flag
-	m_AutoDel = autoDel;
+  // set auto delete flag
+  m_AutoDel = autoDel;
 }
 
 
@@ -67,20 +67,20 @@ Node::Node(PNode prev, PNode next, PVOID data, BOOL autoDel)
 
 Node::~Node()
 {
-	// disconnect from list
-	if(m_Prev)
-		m_Prev->m_Next = m_Next;
+  // disconnect from list
+  if(m_Prev)
+    m_Prev->m_Next = m_Next;
 
-	if(m_Next)
-		m_Next->m_Prev = m_Prev;
+  if(m_Next)
+    m_Next->m_Prev = m_Prev;
 
-	// if auto delete ist set delete data pointer
-	if(m_Data && m_AutoDel)
-		delete m_Data;
+  // if auto delete ist set delete data pointer
+  if(m_Data && m_AutoDel)
+    delete m_Data;
 
-	m_Prev = m_Next = NULL;
-	m_Data = NULL;
-	m_AutoDel = FALSE;
+  m_Prev = m_Next = NULL;
+  m_Data = NULL;
+  m_AutoDel = FALSE;
 }
 
 
@@ -96,7 +96,7 @@ Node::~Node()
 
 PNode Node::Prev() const
 {
-	return m_Prev;
+  return m_Prev;
 }
 
 
@@ -112,10 +112,10 @@ PNode Node::Prev() const
 
 PNode Node::Prev(PNode prev)
 {
-	if(prev)
-		prev->m_Next = this;
+  if(prev)
+    prev->m_Next = this;
 
-	return m_Prev = prev;
+  return m_Prev = prev;
 }
 
 
@@ -131,7 +131,7 @@ PNode Node::Prev(PNode prev)
 
 PNode Node::Next() const
 {
-	return m_Next;
+  return m_Next;
 }
 
 
@@ -147,10 +147,10 @@ PNode Node::Next() const
 
 PNode Node::Next(PNode next)
 {
-	if(next)
-		next->m_Prev = this;
+  if(next)
+    next->m_Prev = this;
 
-	return m_Next = next;
+  return m_Next = next;
 }
 
 
@@ -166,7 +166,7 @@ PNode Node::Next(PNode next)
 
 PVOID Node::Data() const
 {
-	return m_Data;
+  return m_Data;
 }
 
 
@@ -182,11 +182,11 @@ PVOID Node::Data() const
 
 PVOID Node::Data(PVOID data)
 {
-	// if auto delete is set delete current data
-	if(m_Data && m_AutoDel)
-		delete m_Data;
+  // if auto delete is set delete current data
+  if(m_Data && m_AutoDel)
+    delete m_Data;
 
-	return m_Data = data;
+  return m_Data = data;
 }
 
 
@@ -202,7 +202,7 @@ PVOID Node::Data(PVOID data)
 
 BOOL Node::AutoDel() const
 {
-	return m_AutoDel;
+  return m_AutoDel;
 }
 
 
@@ -218,7 +218,7 @@ BOOL Node::AutoDel() const
 
 BOOL Node::AutoDel(BOOL autoDel)
 {
-	return m_AutoDel = autoDel;
+  return m_AutoDel = autoDel;
 }
 
 
@@ -240,12 +240,12 @@ BOOL Node::AutoDel(BOOL autoDel)
 
 List::List()
 {
-	// first an last node are null
-	m_Head = m_Tail = NULL;
-	m_Items = 0;
+  // first an last node are null
+  m_Head = m_Tail = NULL;
+  m_Items = 0;
 	
-	// initialize a critical section object
-	InitializeCriticalSection(&m_CritSect);
+  // initialize a critical section object
+  InitializeCriticalSection(&m_CritSect);
 }
 
 
@@ -261,10 +261,10 @@ List::List()
 
 List::~List()
 {
-	RemoveAll();
+  RemoveAll();
 
-	// free the critical section object
-	DeleteCriticalSection(&m_CritSect);
+  // free the critical section object
+  DeleteCriticalSection(&m_CritSect);
 }
 
 
@@ -280,13 +280,13 @@ List::~List()
 
 PNode List::HeadPos() const
 {
-	PNode headNode;
+  PNode headNode;
 
-	//EnterCriticalSection(m_CritSect);
-	headNode = m_Head;
-	//LeaveCriticalSection(m_CritSect);
+  //EnterCriticalSection(m_CritSect);
+  headNode = m_Head;
+  //LeaveCriticalSection(m_CritSect);
 
-	return headNode;
+  return headNode;
 }
 
 
@@ -302,13 +302,13 @@ PNode List::HeadPos() const
 
 PNode List::TailPos() const
 {
-	PNode tailNode;
+  PNode tailNode;
 
-	//EnterCriticalSection(m_CritSect);
-	tailNode = m_Tail;
-	//LeaveCriticalSection(m_CritSect);
+  //EnterCriticalSection(m_CritSect);
+  tailNode = m_Tail;
+  //LeaveCriticalSection(m_CritSect);
 
-	return tailNode;
+  return tailNode;
 }
 
 
@@ -324,13 +324,13 @@ PNode List::TailPos() const
 
 PNode List::PrevPos(PNode node) const
 {
-	PNode prevNode;
+  PNode prevNode;
 
-	//EnterCriticalSection(m_CritSect);
-	prevNode = node ? node->Prev() : NULL;
-	//LeaveCriticalSection(m_CritSect);
+  //EnterCriticalSection(m_CritSect);
+  prevNode = node ? node->Prev() : NULL;
+  //LeaveCriticalSection(m_CritSect);
 
-	return prevNode;
+  return prevNode;
 }
 
 
@@ -346,13 +346,13 @@ PNode List::PrevPos(PNode node) const
 
 PNode List::NextPos(PNode node) const
 {
-	PNode nextNode;
+  PNode nextNode;
 
-	//EnterCriticalSection(m_CritSect);
-	nextNode = node ? node->Next() : NULL;
-	//LeaveCriticalSection(m_CritSect);
+  //EnterCriticalSection(m_CritSect);
+  nextNode = node ? node->Next() : NULL;
+  //LeaveCriticalSection(m_CritSect);
 
-	return nextNode;
+  return nextNode;
 }
 
 
@@ -368,13 +368,13 @@ PNode List::NextPos(PNode node) const
 
 PVOID List::Head() const
 {
-	PVOID head;
+  PVOID head;
 
-	//EnterCriticalSection(m_CritSect);
-	head = m_Head ? m_Head->Data() : NULL;
-	//LeaveCriticalSection(m_CritSect);
+  //EnterCriticalSection(m_CritSect);
+  head = m_Head ? m_Head->Data() : NULL;
+  //LeaveCriticalSection(m_CritSect);
 
-	return head;
+  return head;
 }
 
 
@@ -391,17 +391,16 @@ PVOID List::Head() const
 
 PVOID List::Head(PVOID data, BOOL autoDel)
 {
-	if(m_Head)
-	{
-		// if auto delete is on we have to delete the old pointer
-		if(m_Head->AutoDel() && m_Head->Data())
-			delete m_Head->Data();
+  if(m_Head) {
+    // if auto delete is on we have to delete the old pointer
+    if(m_Head->AutoDel() && m_Head->Data())
+      delete m_Head->Data();
 
-		m_Head->Data(data);
-		m_Head->AutoDel(autoDel);
-	}
+    m_Head->Data(data);
+    m_Head->AutoDel(autoDel);
+  }
 
-	return m_Head ? m_Head->Data() : NULL;
+  return m_Head ? m_Head->Data() : NULL;
 }
 
 
@@ -417,7 +416,7 @@ PVOID List::Head(PVOID data, BOOL autoDel)
 
 PVOID List::Tail() const
 {
-	return m_Tail ? m_Tail->Data() : NULL;
+  return m_Tail ? m_Tail->Data() : NULL;
 }
 
 
@@ -434,17 +433,16 @@ PVOID List::Tail() const
 
 PVOID List::Tail(PVOID data, BOOL autoDel)
 {
-	if(m_Tail)
-	{
-		// if auto delete is on we have to delete the old pointer
-		if(m_Tail->AutoDel() && m_Tail->Data())
-			delete m_Tail->Data();
+  if(m_Tail) {
+    // if auto delete is on we have to delete the old pointer
+    if(m_Tail->AutoDel() && m_Tail->Data())
+      delete m_Tail->Data();
 
-		m_Tail->Data(data);
-		m_Tail->AutoDel(autoDel);
-	}
+    m_Tail->Data(data);
+    m_Tail->AutoDel(autoDel);
+  }
 
-	return m_Tail ? m_Tail->Data() : NULL;
+  return m_Tail ? m_Tail->Data() : NULL;
 }
 
 
@@ -460,7 +458,7 @@ PVOID List::Tail(PVOID data, BOOL autoDel)
 
 PVOID List::Prev(PNode node) const
 {
-	return node && node->Prev() ? node->Prev()->Data() : NULL;
+  return node && node->Prev() ? node->Prev()->Data() : NULL;
 }
 
 
@@ -478,19 +476,18 @@ PVOID List::Prev(PNode node) const
 
 PVOID List::Prev(PNode node, PVOID data, BOOL autoDel)
 {
-	PNode prevNode = node ? node->Prev() : NULL;
+  PNode prevNode = node ? node->Prev() : NULL;
 	
-	if(prevNode)
-	{
-		// if auto delete is set delete the old data pointer
-		if(prevNode->AutoDel() && prevNode->Data())
-			delete prevNode->Data();
+  if(prevNode) {
+    // if auto delete is set delete the old data pointer
+    if(prevNode->AutoDel() && prevNode->Data())
+      delete prevNode->Data();
 
-		prevNode->Data(data);
-		prevNode->AutoDel(autoDel);
-	}
+    prevNode->Data(data);
+    prevNode->AutoDel(autoDel);
+  }
 
-	return prevNode ? prevNode->Data() : NULL;
+  return prevNode ? prevNode->Data() : NULL;
 }
 
 
@@ -506,7 +503,7 @@ PVOID List::Prev(PNode node, PVOID data, BOOL autoDel)
 
 PVOID List::Next(PNode node) const
 {
-	return node && node->Next() ? node->Next()->Data() : NULL;
+  return node && node->Next() ? node->Next()->Data() : NULL;
 }
 
 
@@ -524,19 +521,18 @@ PVOID List::Next(PNode node) const
 
 PVOID List::Next(PNode node, PVOID data, BOOL autoDel)
 {
-	PNode nextNode = node ? node->Next() : NULL;
+  PNode nextNode = node ? node->Next() : NULL;
 	
-	if(nextNode)
-	{
-		// if auto delete is set delete the old data pointer
-		if(nextNode->AutoDel() && nextNode->Data())
-			delete nextNode->Data();
+  if(nextNode) {
+    // if auto delete is set delete the old data pointer
+    if(nextNode->AutoDel() && nextNode->Data())
+      delete nextNode->Data();
 
-		nextNode->Data(data);
-		nextNode->AutoDel(autoDel);
-	}
+    nextNode->Data(data);
+    nextNode->AutoDel(autoDel);
+  }
 
-	return nextNode ? nextNode->Data() : NULL;
+  return nextNode ? nextNode->Data() : NULL;
 }
 
 
@@ -552,7 +548,7 @@ PVOID List::Next(PNode node, PVOID data, BOOL autoDel)
 
 PVOID List::This(PNode node) const
 {
-	return node ? node->Data() : NULL;
+  return node ? node->Data() : NULL;
 }
 
 
@@ -570,17 +566,16 @@ PVOID List::This(PNode node) const
 
 PVOID List::This(PNode node, PVOID data, BOOL autoDel)
 {
-	if(node)
-	{
-		// if auto delete is set delete the old data pointer
-		if(node->AutoDel() && node->Data())
-			delete node->Data();
+  if(node) {
+    // if auto delete is set delete the old data pointer
+    if(node->AutoDel() && node->Data())
+      delete node->Data();
 
-		node->Data(data);
-		node->AutoDel(autoDel);
-	}
+    node->Data(data);
+    node->AutoDel(autoDel);
+  }
 
-	return node ? node->Data() : NULL;
+  return node ? node->Data() : NULL;
 }
 
 
@@ -597,21 +592,20 @@ PVOID List::This(PNode node, PVOID data, BOOL autoDel)
 
 PNode List::AddHead(PVOID data, BOOL autoDel)
 {
-	// alloc memory for the new node
-	PNode node = new Node(NULL, m_Head, data, autoDel);
+  // alloc memory for the new node
+  PNode node = new Node(NULL, m_Head, data, autoDel);
 	
-	if(node)
-	{
-		m_Head = node;
+  if(node) {
+    m_Head = node;
 
-		// connect the node in the list
-		if(!m_Tail)
-			m_Tail = node;
+    // connect the node in the list
+    if(!m_Tail)
+      m_Tail = node;
 
-		m_Items++;
-	}
+    m_Items++;
+  }
 
-	return node;
+  return node;
 }
 
 
@@ -628,21 +622,20 @@ PNode List::AddHead(PVOID data, BOOL autoDel)
 
 PNode List::AddTail(PVOID data, BOOL autoDel)
 {
-	// alloc memory for the new node
-	PNode node = new Node(m_Tail, NULL, data, autoDel);
+  // alloc memory for the new node
+  PNode node = new Node(m_Tail, NULL, data, autoDel);
 	
-	if(node)
-	{
-		// connect the node in the list
-		if(!m_Head)
-			m_Head = node;
+  if(node) {
+    // connect the node in the list
+    if(!m_Head)
+      m_Head = node;
 
-		m_Tail = node;
+    m_Tail = node;
 
-		m_Items++;
-	}
+    m_Items++;
+  }
 
-	return node;
+  return node;
 }
 
 
@@ -660,22 +653,21 @@ PNode List::AddTail(PVOID data, BOOL autoDel)
 
 BOOL List::Remove(PNode node)
 {
-	if(node)
-	{
-		// look on first and last postion of list
-		if(node == m_Head)
-			m_Head = node->Next();
+  if(node) {
+    // look on first and last postion of list
+    if(node == m_Head)
+      m_Head = node->Next();
 
-		if(node == m_Tail)
-			m_Tail = node->Prev();
+    if(node == m_Tail)
+      m_Tail = node->Prev();
 
-		delete node;
-		m_Items--;
+    delete node;
+    m_Items--;
 
-		return TRUE;
-	}
+    return TRUE;
+  }
 
-	return FALSE;
+  return FALSE;
 }
 
 
@@ -692,21 +684,20 @@ BOOL List::Remove(PNode node)
 
 BOOL List::RemoveAll()
 {
-	// clear all nodes
-	for(PNode node = m_Head; node;)
-	{
-		PNode tmpNode = node->Next();
+  // clear all nodes
+  for(PNode node = m_Head; node;) {
+    PNode tmpNode = node->Next();
 
-		delete node;
+    delete node;
 
-		node = tmpNode;
-	}
+    node = tmpNode;
+  }
 
-	// reset list members
-	m_Head = m_Tail = NULL;
-	m_Items = 0;
+  // reset list members
+  m_Head = m_Tail = NULL;
+  m_Items = 0;
 
-	return TRUE;
+  return TRUE;
 }
 
 
@@ -723,18 +714,17 @@ BOOL List::RemoveAll()
 
 BOOL List::Compress()
 {
-	// clear all nodes if the data pointer is null
-	for(PNode node = m_Head; node;)
-	{
-		PNode tmpNode = node->Next();
+  // clear all nodes if the data pointer is null
+  for(PNode node = m_Head; node;) {
+    PNode tmpNode = node->Next();
 
-		if(!node->Data())
-			Remove(node);
+    if(!node->Data())
+      Remove(node);
 
-		node = tmpNode;
-	}
+    node = tmpNode;
+  }
 
-	return TRUE;
+  return TRUE;
 }
 
 
@@ -752,27 +742,25 @@ BOOL List::Compress()
 BOOL List::Check()
 {
   {
-	// first walk forward
-	for(PNode node = m_Head; node; )
-	{
-		if(node->Next() == m_Tail)
-			break;
+    // first walk forward
+    for(PNode node = m_Head; node; ) {
+      if(node->Next() == m_Tail)
+        break;
 
-		if(!node->Next())
-			return FALSE;
-	}
+      if(!node->Next())
+        return FALSE;
+    }
   }
-	// then walk backward
-	for(PNode node = m_Tail; node; )
-	{
-		if(node->Prev() == m_Head)
-			break;
+  // then walk backward
+  for(PNode node = m_Tail; node; ) {
+    if(node->Prev() == m_Head)
+      break;
 
-		if(!node->Prev())
-			return FALSE;
-	}
+    if(!node->Prev())
+      return FALSE;
+  }
 
-	return TRUE;
+  return TRUE;
 }
 
 
@@ -788,7 +776,7 @@ BOOL List::Check()
 
 DWORD List::Items() const
 {
-	return m_Items;
+  return m_Items;
 }
 
 
@@ -805,7 +793,7 @@ DWORD List::Items() const
 
 BOOL List::IsEmpty() const
 {
-	return m_Items ? TRUE : FALSE;
+  return m_Items ? TRUE : FALSE;
 }
 
 
@@ -828,8 +816,8 @@ BOOL List::IsEmpty() const
 
 ListItr::ListItr(PList listPtr, BOOL setAtHead)
 {
-	m_Node = 
-		(m_List = listPtr) ? setAtHead ? listPtr->HeadPos() : listPtr->TailPos() : NULL;
+  m_Node = 
+    (m_List = listPtr) ? setAtHead ? listPtr->HeadPos() : listPtr->TailPos() : NULL;
 }
 
 
@@ -860,7 +848,7 @@ ListItr::~ListItr()
 
 PList ListItr::List() const
 {
-	return m_List;
+  return m_List;
 }
 
 
@@ -877,10 +865,10 @@ PList ListItr::List() const
 
 PList ListItr::List(PList listPtr, BOOL setAtHead)
 {
-	m_Node = 
-		(m_List = listPtr) ? setAtHead ? listPtr->HeadPos() : listPtr->TailPos() : NULL;
+  m_Node = 
+    (m_List = listPtr) ? setAtHead ? listPtr->HeadPos() : listPtr->TailPos() : NULL;
 
-	return m_List;
+  return m_List;
 }
 
 
@@ -896,8 +884,8 @@ PList ListItr::List(PList listPtr, BOOL setAtHead)
 
 PNode ListItr::Reset(BOOL setAtHead)
 {
-	return m_Node = 
-					 m_List ? setAtHead ? m_List->HeadPos() : m_List->TailPos() : NULL;
+  return m_Node = 
+    m_List ? setAtHead ? m_List->HeadPos() : m_List->TailPos() : NULL;
 }
 
 
@@ -913,8 +901,8 @@ PNode ListItr::Reset(BOOL setAtHead)
 
 PVOID ListItr::operator ++ ()
 {
-	return (m_Node = m_List && m_Node ? m_List->NextPos(m_Node) : NULL) ? 
-						m_List->This(m_Node) : NULL;
+  return (m_Node = m_List && m_Node ? m_List->NextPos(m_Node) : NULL) ? 
+    m_List->This(m_Node) : NULL;
 }
 
 
@@ -930,11 +918,11 @@ PVOID ListItr::operator ++ ()
 
 PVOID ListItr::operator ++ (int)
 {
-	PVOID data = m_List && m_Node ? m_List->This(m_Node) : NULL;
+  PVOID data = m_List && m_Node ? m_List->This(m_Node) : NULL;
 
-	m_Node = m_List && m_Node ? m_List->NextPos(m_Node) : NULL;
+  m_Node = m_List && m_Node ? m_List->NextPos(m_Node) : NULL;
 	
-	return data;
+  return data;
 }
 
 
@@ -950,8 +938,8 @@ PVOID ListItr::operator ++ (int)
 
 PVOID ListItr::operator -- ()
 {
-	return (m_Node = m_List && m_Node ? m_List->PrevPos(m_Node) : NULL) ? 
-						m_List->This(m_Node) : NULL;
+  return (m_Node = m_List && m_Node ? m_List->PrevPos(m_Node) : NULL) ? 
+    m_List->This(m_Node) : NULL;
 }
 
 
@@ -966,11 +954,11 @@ PVOID ListItr::operator -- ()
 ///////////////////////////////////////////////////////////////////////////////
 PVOID ListItr::operator -- (int)
 {
-	PVOID data = m_List && m_Node ? m_List->This(m_Node) : NULL;
+  PVOID data = m_List && m_Node ? m_List->This(m_Node) : NULL;
 
-	m_Node = m_List && m_Node ? m_List->PrevPos(m_Node) : NULL;
+  m_Node = m_List && m_Node ? m_List->PrevPos(m_Node) : NULL;
 	
-	return data;
+  return data;
 }
 
 
@@ -987,7 +975,7 @@ PVOID ListItr::operator -- (int)
 
 ListItr::operator int ()
 {
-	return m_List && m_Node ? TRUE : FALSE;
+  return m_List && m_Node ? TRUE : FALSE;
 }
 
 

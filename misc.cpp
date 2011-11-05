@@ -14,7 +14,7 @@
 // param:	 size - size to allocate in bytes
 //
 // return: ptr to the allocated memory
-//				 
+//
 // note:	 if there is not enougth memory, a STATUS_NO_MEMORY exception will be
 //				 raised
 //
@@ -22,8 +22,9 @@
 
 PSTR NewMem(DWORD size)
 {
-	return 
-		(PSTR)HeapAlloc(GetProcessHeap(), HEAP_GENERATE_EXCEPTIONS | HEAP_ZERO_MEMORY, size);
+  return
+    (PSTR)HeapAlloc(GetProcessHeap(),
+                    HEAP_GENERATE_EXCEPTIONS | HEAP_ZERO_MEMORY, size);
 }
 
 
@@ -36,7 +37,7 @@ PSTR NewMem(DWORD size)
 //				 reinit - if true, rezero the memory
 //
 // return: ptr to the allocated memory
-//				 
+//
 // note:	 if there is not enougth memory, a STATUS_NO_MEMORY exception will be
 //				 raised
 //
@@ -44,46 +45,45 @@ PSTR NewMem(DWORD size)
 
 PSTR NewMem(PVOID oldPtr, DWORD size, int reinit)
 {
-	HANDLE hHeap = GetProcessHeap();
+  HANDLE hHeap = GetProcessHeap();
 
-	if(oldPtr)
-	{
-		if(HeapSize(hHeap, 0, oldPtr) >= size)
-		{
-			if(reinit)
-				ZeroMemory(oldPtr, size);
+  if (oldPtr) {
+    if (HeapSize(hHeap, 0, oldPtr) >= size) {
+      if (reinit)
+        ZeroMemory(oldPtr, size);
 
-			return (PSTR)oldPtr;
-		}
+      return (PSTR)oldPtr;
+    }
 
-		if(reinit)
-		{
-			PVOID newPtr = 
-				HeapReAlloc(hHeap, HEAP_GENERATE_EXCEPTIONS | HEAP_ZERO_MEMORY,	oldPtr, size);
+    if (reinit) {
+      PVOID newPtr =
+        HeapReAlloc(hHeap, HEAP_GENERATE_EXCEPTIONS | HEAP_ZERO_MEMORY,
+                    oldPtr, size);
 
-			ZeroMemory(newPtr, size);
+      ZeroMemory(newPtr, size);
 
-			return (PSTR)newPtr;
-		}
+      return (PSTR)newPtr;
+    }
 
-		return
-			(PSTR)HeapReAlloc(hHeap, HEAP_GENERATE_EXCEPTIONS | HEAP_ZERO_MEMORY,	
-												oldPtr, size);
-	}
+    return
+      (PSTR)HeapReAlloc(hHeap, HEAP_GENERATE_EXCEPTIONS | HEAP_ZERO_MEMORY,
+                        oldPtr, size);
+  }
 
-	return (PSTR)HeapAlloc(hHeap, HEAP_GENERATE_EXCEPTIONS | HEAP_ZERO_MEMORY, size);
+  return (PSTR)HeapAlloc(hHeap, HEAP_GENERATE_EXCEPTIONS | HEAP_ZERO_MEMORY,
+                         size);
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////
 //
-// allocates memory for a string and copies the contents of str to the 
+// allocates memory for a string and copies the contents of str to the
 // allocated string
 //
 // param:	 str - pointer to string to copy
 //
 // return: ptr to the allocated memory
-//				 
+//
 // note:	 if there is not enougth memory, a STATUS_NO_MEMORY exception will be
 //				 raised
 //
@@ -91,24 +91,24 @@ PSTR NewMem(PVOID oldPtr, DWORD size, int reinit)
 
 PSTR NewStr(PSTR str)
 {
-	PSTR newStr = NewMem((str ? lstrlen(str) : 0) + 1);
+  PSTR newStr = NewMem((str ? lstrlen(str) : 0) + 1);
 
-	if(str)
-		lstrcpy(newStr, str);
+  if (str)
+    lstrcpy(newStr, str);
 
-	return newStr;
+  return newStr;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////
 //
-// allocates memory for a unicode string and copies the contents of str to the 
+// allocates memory for a unicode string and copies the contents of str to the
 // allocated string
 //
 // param:	 str - pointer to string to copy
 //
 // return: ptr to the allocated memory
-//				 
+//
 // note:	 if there is not enougth memory, a STATUS_NO_MEMORY exception will be
 //				 raised
 //
@@ -116,24 +116,24 @@ PSTR NewStr(PSTR str)
 
 PWSTR NewStr(PWSTR str)
 {
-	PWSTR newStr = (PWSTR)NewMem(((str ? wcslen(str) : 0) + 1) * sizeof(WCHAR));
+  PWSTR newStr = (PWSTR)NewMem(((str ? wcslen(str) : 0) + 1) * sizeof(WCHAR));
 
-	if(str)
-		wcscpy(newStr, str);
+  if (str)
+    wcscpy(newStr, str);
 
-	return newStr;
+  return newStr;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////
 //
-// allocates memory for a unicode string and copies the contents of str to the 
+// allocates memory for a unicode string and copies the contents of str to the
 // allocated string
 //
 // param:	 str - pointer to string to copy
 //
 // return: ptr to the allocated memory
-//				 
+//
 // note:	 if there is not enougth memory, a STATUS_NO_MEMORY exception will be
 //				 raised
 //
@@ -141,13 +141,13 @@ PWSTR NewStr(PWSTR str)
 
 PWSTR NewStrAsWide(PSTR str)
 {
-	int newStrSize = ((str ? lstrlen(str) : 0) + 1) * sizeof(WCHAR);
-	PWSTR newStr = (PWSTR)NewMem(newStrSize);
+  int newStrSize = ((str ? lstrlen(str) : 0) + 1) * sizeof(WCHAR);
+  PWSTR newStr = (PWSTR)NewMem(newStrSize);
 
-	if(str)
-		MultiByteToWideChar(CP_ACP, 0, str, -1, newStr, newStrSize);
+  if (str)
+    MultiByteToWideChar(CP_ACP, 0, str, -1, newStr, newStrSize);
 
-	return newStr;
+  return newStr;
 }
 
 
@@ -159,12 +159,12 @@ PWSTR NewStrAsWide(PSTR str)
 //
 // return: 1 - success
 //				 0 - failure
-//				 
+//
 ///////////////////////////////////////////////////////////////////////////////
 
 int FreeMem(PVOID ptr)
 {
-	return HeapFree(GetProcessHeap(), 0, ptr) ? 0 : 1;
+  return HeapFree(GetProcessHeap(), 0, ptr) ? 0 : 1;
 }
 
 
@@ -177,16 +177,16 @@ int FreeMem(PVOID ptr)
 //
 // return: 1 - success
 //				 0 - failure
-//				 
+//
 ///////////////////////////////////////////////////////////////////////////////
 
 int FreeArray(PVOID *ptr, DWORD size)
 {
-	for(DWORD count = 0; ptr && count < size; count++)
-		if(ptr[count])
-			FreeMem(ptr[count]), ptr[count] = NULL;
+  for(DWORD count = 0; ptr && count < size; count++)
+    if (ptr[count])
+      FreeMem(ptr[count]), ptr[count] = NULL;
 
-	return 1;
+  return 1;
 }
 
 
@@ -198,17 +198,17 @@ int FreeArray(PVOID *ptr, DWORD size)
 //				 codePtr - destination pointer
 //
 // return: always 1
-//				 
+//
 // note:	 don't call this directly; use the SetExceptCode macro instead
 //
 ///////////////////////////////////////////////////////////////////////////////
 
 int SaveExceptionCode(DWORD code, PDWORD codePtr)
 {
-	if(codePtr)
-		*codePtr = code;
+  if (codePtr)
+    *codePtr = code;
 
-	return 1;
+  return 1;
 }
 
 
@@ -220,25 +220,25 @@ int SaveExceptionCode(DWORD code, PDWORD codePtr)
 //				 exceptPtr - destination pointer
 //
 // return: always 1
-//				 
+//
 // note:	 don't call this directly; use the SetExceptInfo macro instead
 //
 ///////////////////////////////////////////////////////////////////////////////
 
-int SaveExceptionInformation(PEXCEPTION_POINTERS exception, PEXCEPTION_POINTERS exceptPtr)
+int SaveExceptionInformation(PEXCEPTION_POINTERS exception,
+                             PEXCEPTION_POINTERS exceptPtr)
 {
-	if(exceptPtr)
-		if(exception)
-		{
-			CopyMemory(exceptPtr->ExceptionRecord, exception->ExceptionRecord, sizeof(EXCEPTION_RECORD));
-			CopyMemory(exceptPtr->ContextRecord, exception->ContextRecord, sizeof(CONTEXT));
-		}
-		else
-		{
-			ZeroMemory(exceptPtr->ExceptionRecord, sizeof(EXCEPTION_RECORD));
-			ZeroMemory(exceptPtr->ContextRecord, sizeof(CONTEXT));
-		}
+  if (exceptPtr)
+    if (exception) {
+      CopyMemory(exceptPtr->ExceptionRecord, exception->ExceptionRecord,
+                 sizeof(EXCEPTION_RECORD));
+      CopyMemory(exceptPtr->ContextRecord, exception->ContextRecord,
+                 sizeof(CONTEXT));
+    } else {
+      ZeroMemory(exceptPtr->ExceptionRecord, sizeof(EXCEPTION_RECORD));
+      ZeroMemory(exceptPtr->ContextRecord, sizeof(CONTEXT));
+    }
 
-	return 1;
+  return 1;
 }
 

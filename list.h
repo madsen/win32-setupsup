@@ -48,37 +48,37 @@ typedef List *PList;
 
 class Node
 {
-	// allow access to protected members
-	friend class List;
+  // allow access to protected members
+  friend class List;
 
-protected:
-	// default constructor
-	Node();
+ protected:
+  // default constructor
+  Node();
 
-	// constructor with chain members
-	Node(PNode prev, PNode next, PVOID data, BOOL autoDel = FALSE);
-	
-	// destructor
-	~Node();
+  // constructor with chain members
+  Node(PNode prev, PNode next, PVOID data, BOOL autoDel = FALSE);
 
-	// get and set prev, next, data or autodel members
-	PNode Prev() const;
-	PNode Prev(PNode prev);
+  // destructor
+  ~Node();
 
-	PNode Next() const;
-	PNode Next(PNode next);
+  // get and set prev, next, data or autodel members
+  PNode Prev() const;
+  PNode Prev(PNode prev);
 
-	PVOID Data() const;
-	PVOID Data(PVOID data);
+  PNode Next() const;
+  PNode Next(PNode next);
 
-	BOOL AutoDel() const;
-	BOOL AutoDel(BOOL autoDel);
+  PVOID Data() const;
+  PVOID Data(PVOID data);
 
-private:
-	PNode m_Prev, m_Next;
-	PVOID m_Data;
-	BOOL m_AutoDel;
-}; 
+  BOOL AutoDel() const;
+  BOOL AutoDel(BOOL autoDel);
+
+ private:
+  PNode m_Prev, m_Next;
+  PVOID m_Data;
+  BOOL m_AutoDel;
+};
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -89,57 +89,57 @@ private:
 
 class List
 {
-public:
-	// default constructor
-	List();
+ public:
+  // default constructor
+  List();
 
-	// destructor
-	~List();
+  // destructor
+  ~List();
 
-	// gets head, tail, prev and next members
-	PNode HeadPos() const;
-	PNode TailPos() const;
-	PNode PrevPos(PNode node) const;
-	PNode NextPos(PNode node) const;
+  // gets head, tail, prev and next members
+  PNode HeadPos() const;
+  PNode TailPos() const;
+  PNode PrevPos(PNode node) const;
+  PNode NextPos(PNode node) const;
 
-	// data access; head, tail, prev, next and this
-	PVOID Head() const;
-	PVOID Head(PVOID data, BOOL autoDel = FALSE);
-	PVOID Tail() const;
-	PVOID Tail(PVOID data, BOOL autoDel = FALSE);
-	PVOID Prev(PNode node) const;
-	PVOID Prev(PNode node, PVOID data, BOOL autoDel = FALSE);
-	PVOID Next(PNode node) const;
-	PVOID Next(PNode node, PVOID data, BOOL autoDel = FALSE);
-	PVOID This(PNode node) const;
-	PVOID This(PNode node, PVOID data, BOOL autoDel = FALSE);
+  // data access; head, tail, prev, next and this
+  PVOID Head() const;
+  PVOID Head(PVOID data, BOOL autoDel = FALSE);
+  PVOID Tail() const;
+  PVOID Tail(PVOID data, BOOL autoDel = FALSE);
+  PVOID Prev(PNode node) const;
+  PVOID Prev(PNode node, PVOID data, BOOL autoDel = FALSE);
+  PVOID Next(PNode node) const;
+  PVOID Next(PNode node, PVOID data, BOOL autoDel = FALSE);
+  PVOID This(PNode node) const;
+  PVOID This(PNode node, PVOID data, BOOL autoDel = FALSE);
 
-	// adds a node at head or at tail position
-	PNode AddHead(PVOID data, BOOL autoDel = FALSE);
-	PNode AddTail(PVOID data, BOOL autoDel = FALSE);
-	
-	// removes a node from the chain
-	BOOL Remove(PNode node);
-	
-	// removes all nodes
-	BOOL RemoveAll();
-	
-	// removes all nodes which data member is null 
-	BOOL Compress();
+  // adds a node at head or at tail position
+  PNode AddHead(PVOID data, BOOL autoDel = FALSE);
+  PNode AddTail(PVOID data, BOOL autoDel = FALSE);
 
-	// checks the interity of the chain
-	BOOL Check();
+  // removes a node from the chain
+  BOOL Remove(PNode node);
 
-	// returns the number of nodes in the list
-	DWORD Items() const;
+  // removes all nodes
+  BOOL RemoveAll();
 
-	// returns if the list is empty or not
-	BOOL IsEmpty() const;
+  // removes all nodes which data member is null
+  BOOL Compress();
 
-private:
-	PNode m_Head, m_Tail;
-	DWORD m_Items;
-	CRITICAL_SECTION m_CritSect;
+  // checks the interity of the chain
+  BOOL Check();
+
+  // returns the number of nodes in the list
+  DWORD Items() const;
+
+  // returns if the list is empty or not
+  BOOL IsEmpty() const;
+
+ private:
+  PNode m_Head, m_Tail;
+  DWORD m_Items;
+  CRITICAL_SECTION m_CritSect;
 };
 
 
@@ -151,36 +151,33 @@ private:
 
 class ListItr
 {
-public:
-	// constructor
-	ListItr(PList listPtr = NULL, BOOL setAtHead = TRUE);
+ public:
+  // constructor
+  ListItr(PList listPtr = NULL, BOOL setAtHead = TRUE);
 
-	// destructor
-	~ListItr();
+  // destructor
+  ~ListItr();
 
-	// gets and sets the app. list
-	PList List() const;
-	PList List(PList listPtr, BOOL setAtHead = TRUE);
+  // gets and sets the app. list
+  PList List() const;
+  PList List(PList listPtr, BOOL setAtHead = TRUE);
 
-	// sets the iterator at the beginning of the list
-	PNode Reset(BOOL setAtHead = TRUE);
+  // sets the iterator at the beginning of the list
+  PNode Reset(BOOL setAtHead = TRUE);
 
-	// operators to walk thougth the list
-	PVOID operator ++ ();
-	PVOID operator ++ (int);
-	PVOID operator -- ();
-	PVOID operator -- (int);
+  // operators to walk thougth the list
+  PVOID operator ++ ();
+  PVOID operator ++ (int);
+  PVOID operator -- ();
+  PVOID operator -- (int);
 
-	// operator to see if the iterator points to a valid node
-	operator int ();
+  // operator to see if the iterator points to a valid node
+  operator int ();
 
-private:
-	PList m_List;
- 	PNode m_Node;
+ private:
+  PList m_List;
+  PNode m_Node;
 };
 
 
 #endif
-
-
-

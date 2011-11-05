@@ -35,7 +35,7 @@ int WCTMB(LPWSTR wStr, LPSTR str, int size);
 
 ///////////////////////////////////////////////////////////////////////////////
 //
-// allocates memory for a unicode string and copies a single byte string to a 
+// allocates memory for a unicode string and copies a single byte string to a
 // unicode string
 //
 // param:  str    - single byte string
@@ -51,7 +51,7 @@ PWSTR S2W(PSTR str, int strLen = -1);
 
 ///////////////////////////////////////////////////////////////////////////////
 //
-// allocates memory for a single byte string and copies a unicode string to a 
+// allocates memory for a single byte string and copies a unicode string to a
 // single byte string
 //
 // param:  wStr   - unicode string
@@ -93,5 +93,3 @@ void FreeStr(PWSTR wStr);
 
 
 #endif
-
-

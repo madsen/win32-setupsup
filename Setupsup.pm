@@ -35,306 +35,299 @@ die "The $Package module works only on Windows NT" if(!Win32::IsWinNT());
 # names by default without a very good reason. Use EXPORT_OK instead.
 # Do not simply export all your public functions/methods/constants.
 @EXPORT = qw(
-	ERROR_TIMEOUT_ELAPSED
-	INVALID_SID_ERROR
-	NOT_ENOUGTH_MEMORY_ERROR
-	UNKNOWN_PROPERTY_ERROR
-	INVALID_PROPERTY_TYPE_ERROR
+  ERROR_TIMEOUT_ELAPSED
+  INVALID_SID_ERROR
+  NOT_ENOUGTH_MEMORY_ERROR
+  UNKNOWN_PROPERTY_ERROR
+  INVALID_PROPERTY_TYPE_ERROR
 
-	VS_FF_DEBUG
-	VS_FF_PRERELEASE
-	VS_FF_PATCHED
-	VS_FF_PRIVATEBUILD
-	VS_FF_INFOINFERRED
-	VS_FF_SPECIALBUILD
+  VS_FF_DEBUG
+  VS_FF_PRERELEASE
+  VS_FF_PATCHED
+  VS_FF_PRIVATEBUILD
+  VS_FF_INFOINFERRED
+  VS_FF_SPECIALBUILD
 
-	VOS_UNKNOWN
-	VOS_DOS
-	VOS_OS216
-	VOS_OS232
-	VOS_NT
+  VOS_UNKNOWN
+  VOS_DOS
+  VOS_OS216
+  VOS_OS232
+  VOS_NT
 
-	VOS__BASE
-	VOS__WINDOWS16
-	VOS__PM16
-	VOS__PM32
-	VOS__WINDOWS32
+  VOS__BASE
+  VOS__WINDOWS16
+  VOS__PM16
+  VOS__PM32
+  VOS__WINDOWS32
 
-	VOS_DOS_WINDOWS16
-	VOS_DOS_WINDOWS32
-	VOS_OS216_PM16
-	VOS_OS232_PM32
-	VOS_NT_WINDOWS32
+  VOS_DOS_WINDOWS16
+  VOS_DOS_WINDOWS32
+  VOS_OS216_PM16
+  VOS_OS232_PM32
+  VOS_NT_WINDOWS32
 
-	VFT_UNKNOWN
-	VFT_APP
-	VFT_DLL
-	VFT_DRV
-	VFT_FONT
-	VFT_VXD
-	VFT_STATIC_LIB
+  VFT_UNKNOWN
+  VFT_APP
+  VFT_DLL
+  VFT_DRV
+  VFT_FONT
+  VFT_VXD
+  VFT_STATIC_LIB
 
-	VFT2_UNKNOWN
-	VFT2_DRV_PRINTER
-	VFT2_DRV_KEYBOARD
-	VFT2_DRV_LANGUAGE
-	VFT2_DRV_DISPLAY
-	VFT2_DRV_MOUSE
-	VFT2_DRV_NETWORK
-	VFT2_DRV_SYSTEM
-	VFT2_DRV_INSTALLABLE
-	VFT2_DRV_SOUND
-	VFT2_DRV_COMM
-	VFT2_DRV_INPUTMETHOD
+  VFT2_UNKNOWN
+  VFT2_DRV_PRINTER
+  VFT2_DRV_KEYBOARD
+  VFT2_DRV_LANGUAGE
+  VFT2_DRV_DISPLAY
+  VFT2_DRV_MOUSE
+  VFT2_DRV_NETWORK
+  VFT2_DRV_SYSTEM
+  VFT2_DRV_INSTALLABLE
+  VFT2_DRV_SOUND
+  VFT2_DRV_COMM
+  VFT2_DRV_INPUTMETHOD
 
-	VFT2_FONT_RASTER
-	VFT2_FONT_VECTOR
-	VFT2_FONT_TRUETYPE
+  VFT2_FONT_RASTER
+  VFT2_FONT_VECTOR
+  VFT2_FONT_TRUETYPE
 
-	VFFF_ISSHAREDFILE
+  VFFF_ISSHAREDFILE
 
-	VFF_CURNEDEST
-	VFF_FILEINUSE
-	VFF_BUFFTOOSMALL
+  VFF_CURNEDEST
+  VFF_FILEINUSE
+  VFF_BUFFTOOSMALL
 
-	VIFF_FORCEINSTALL
-	VIFF_DONTDELETEOLD
+  VIFF_FORCEINSTALL
+  VIFF_DONTDELETEOLD
 
-	VIF_TEMPFILE
-	VIF_MISMATCH
-	VIF_SRCOLD
+  VIF_TEMPFILE
+  VIF_MISMATCH
+  VIF_SRCOLD
 
-	VIF_DIFFLANG
-	VIF_DIFFCODEPG
-	VIF_DIFFTYPE
+  VIF_DIFFLANG
+  VIF_DIFFCODEPG
+  VIF_DIFFTYPE
 
-	VIF_WRITEPROT
-	VIF_FILEINUSE
-	VIF_OUTOFSPACE
-	VIF_ACCESSVIOLATION
-	VIF_SHARINGVIOLATION
-	VIF_CANNOTCREATE
-	VIF_CANNOTDELETE
-	VIF_CANNOTRENAME
-	VIF_CANNOTDELETECUR
-	VIF_OUTOFMEMORY
+  VIF_WRITEPROT
+  VIF_FILEINUSE
+  VIF_OUTOFSPACE
+  VIF_ACCESSVIOLATION
+  VIF_SHARINGVIOLATION
+  VIF_CANNOTCREATE
+  VIF_CANNOTDELETE
+  VIF_CANNOTRENAME
+  VIF_CANNOTDELETECUR
+  VIF_OUTOFMEMORY
 
-	VIF_CANNOTREADSRC
-	VIF_CANNOTREADDST
+  VIF_CANNOTREADSRC
+  VIF_CANNOTREADDST
 
-	VIF_BUFFTOOSMALL
-
+  VIF_BUFFTOOSMALL
 );
 
 @EXPORT_OK = qw(
-	SendKeys
-	EnumWindows
-	EnumChildWindows
-	WaitForWindow
-	WaitForAnyWindow
-	WaitForAnyWindowAsynch
-	WaitForWindowClose
-	SetWindowText
-	GetWindowText
-	GetDlgItem
-	SetFocus
-	GetWindowProperties
-	SetWindowProperties
-	AccountToSid
-	SidToAccount
-	GetVersionInfo
-	GetProcessList
-	KillProcess
-	Sleep
-	DisableKeyboardAfterReboot
-	EnableKeyboardAfterReboot
-	DisableMouseAfterReboot
-	EnableMouseAfterReboot
-	GetProgramFilesDir
-	GetCommonFilesDir
+  SendKeys
+  EnumWindows
+  EnumChildWindows
+  WaitForWindow
+  WaitForAnyWindow
+  WaitForAnyWindowAsynch
+  WaitForWindowClose
+  SetWindowText
+  GetWindowText
+  GetDlgItem
+  SetFocus
+  GetWindowProperties
+  SetWindowProperties
+  AccountToSid
+  SidToAccount
+  GetVersionInfo
+  GetProcessList
+  KillProcess
+  Sleep
+  DisableKeyboardAfterReboot
+  EnableKeyboardAfterReboot
+  DisableMouseAfterReboot
+  EnableMouseAfterReboot
+  GetProgramFilesDir
+  GetCommonFilesDir
 );
 
 
 sub AUTOLOAD
 {
-		# This AUTOLOAD is used to 'autoload' constants from the constant()
-		# XS function.	If a constant is not found then control is passed
-		# to the AUTOLOAD in AutoLoader.
+  # This AUTOLOAD is used to 'autoload' constants from the constant()
+  # XS function.  If a constant is not found then control is passed
+  # to the AUTOLOAD in AutoLoader.
 
-		local($constname);
-		($constname = $AUTOLOAD) =~ s/.*:://;
-		#reset $! to zero to reset any current errors.
-		$!=0;
-		$val = constant($constname, @_ ? $_[0] : 0);
-		if ($! != 0)
-		{
-				if ($! =~ /Invalid/)
-				{
-						$AutoLoader::AUTOLOAD = $AUTOLOAD;
-						goto &AutoLoader::AUTOLOAD;
-				}
-				else
-				{
-						my ($file,$line) = (caller)[1,2];
-						die "Your vendor has not defined $Package macro $constname, used in $file at line $line.";
-				}
-		}
-		eval "sub $AUTOLOAD { $val }";
-		goto &$AUTOLOAD;
+  local($constname);
+  ($constname = $AUTOLOAD) =~ s/.*:://;
+  #reset $! to zero to reset any current errors.
+  $!=0;
+  $val = constant($constname, @_ ? $_[0] : 0);
+  if ($! != 0) {
+    if ($! =~ /Invalid/) {
+      $AutoLoader::AUTOLOAD = $AUTOLOAD;
+      goto &AutoLoader::AUTOLOAD;
+    } else {
+      my ($file,$line) = (caller)[1,2];
+      die "Your vendor has not defined $Package macro $constname, used in $file at line $line.";
+    }
+  }
+  eval "sub $AUTOLOAD { $val }";
+  goto &$AUTOLOAD;
 }
 
 
 # disables keyboard input after reboot
 sub DisableKeyboardAfterReboot
 {
-	die "Usage: Win32::Setupsup::DisableKeyboardAfterReboot()\n" if($#_ != -1);
+  die "Usage: Win32::Setupsup::DisableKeyboardAfterReboot()\n" if($#_ != -1);
 
-	if(!Win32::Registry::RegCreateKeyEx(&HKEY_LOCAL_MACHINE, 'SYSTEM\\CurrentControlSet\\Hardware Profiles\\' .
-								'0001\\System\\CurrentControlSet\\Enum\\ROOT\\LEGACY_KBDCLASS\\0000',
-								&NULL, '', &NULL, &KEY_WRITE, &NULL, $hKey, $disp))
-	{
-		Win32::Setupsup::SetLastError(Win32::GetLastError());
-		return 0;
-	}
+  if (!Win32::Registry::RegCreateKeyEx( &HKEY_LOCAL_MACHINE,
+        'SYSTEM\\CurrentControlSet\\Hardware Profiles\\' .
+        '0001\\System\\CurrentControlSet\\Enum\\ROOT\\LEGACY_KBDCLASS\\0000',
+        &NULL, '', &NULL, &KEY_WRITE, &NULL, $hKey, $disp)) {
+    Win32::Setupsup::SetLastError(Win32::GetLastError());
+    return 0;
+  }
 
-	if(!Win32::Registry::RegSetValueEx($hKey, 'CSConfigFlags', &NULL, &REG_DWORD, 1))
-	{
-		Win32::Setupsup::SetLastError(Win32::GetLastError());
-		Win32::Registry::RegCloseKey($hKey);
-		return 0;
-	}
+  if (!Win32::Registry::RegSetValueEx($hKey, 'CSConfigFlags', &NULL,
+                                      &REG_DWORD, 1)) {
+    Win32::Setupsup::SetLastError(Win32::GetLastError());
+    Win32::Registry::RegCloseKey($hKey);
+    return 0;
+  }
 
-	Win32::Registry::RegCloseKey($hKey);
+  Win32::Registry::RegCloseKey($hKey);
 
-	return 1;
+  return 1;
 }
 
 
 # enables keyboard input after reboot
 sub EnableKeyboardAfterReboot
 {
-	die "Usage: Win32::Setupsup::EnableKeyboardAfterReboot()\n" if($#_ != -1);
+  die "Usage: Win32::Setupsup::EnableKeyboardAfterReboot()\n" if($#_ != -1);
 
-	if(!Win32::Registry::RegCreateKeyEx(&HKEY_LOCAL_MACHINE, 'SYSTEM\\CurrentControlSet\\Hardware Profiles\\' .
-								'0001\\System\\CurrentControlSet\\Enum\\ROOT\\LEGACY_KBDCLASS\\0000',
-								&NULL, '', &NULL, &KEY_WRITE, &NULL, $hKey, $disp))
-	{
-		Win32::Setupsup::SetLastError(Win32::GetLastError());
-		return 0;
-	}
+  if (!Win32::Registry::RegCreateKeyEx(&HKEY_LOCAL_MACHINE,
+        'SYSTEM\\CurrentControlSet\\Hardware Profiles\\' .
+        '0001\\System\\CurrentControlSet\\Enum\\ROOT\\LEGACY_KBDCLASS\\0000',
+        &NULL, '', &NULL, &KEY_WRITE, &NULL, $hKey, $disp)) {
+    Win32::Setupsup::SetLastError(Win32::GetLastError());
+    return 0;
+  }
 
-	if(!Win32::Registry::RegSetValueEx($hKey, 'CSConfigFlags', &NULL, &REG_DWORD, 0))
-	{
-		Win32::Setupsup::SetLastError(Win32::GetLastError());
-		Win32::Registry::RegCloseKey($hKey);
-		return 0;
-	}
+  if (!Win32::Registry::RegSetValueEx($hKey, 'CSConfigFlags', &NULL,
+                                      &REG_DWORD, 0)) {
+    Win32::Setupsup::SetLastError(Win32::GetLastError());
+    Win32::Registry::RegCloseKey($hKey);
+    return 0;
+  }
 
-	Win32::Registry::RegCloseKey($hKey);
+  Win32::Registry::RegCloseKey($hKey);
 
-	return 1;
+  return 1;
 }
 
 
 # disables mouse input after reboot
 sub DisableMouseAfterReboot
 {
-	die "Usage: Win32::Setupsup::DisableMouseAfterReboot()\n" if($#_ != -1);
+  die "Usage: Win32::Setupsup::DisableMouseAfterReboot()\n" if($#_ != -1);
 
-	if(!Win32::Registry::RegCreateKeyEx(&HKEY_LOCAL_MACHINE, 'SYSTEM\\CurrentControlSet\\Hardware Profiles\\' .
-								'0001\\System\\CurrentControlSet\\Enum\\ROOT\\LEGACY_MOUCLASS\\0000',
-								&NULL, '', &NULL, &KEY_WRITE, &NULL, $hKey, $disp))
-	{
-		Win32::Setupsup::SetLastError(Win32::GetLastError());
-		return 0;
-	}
+  if (!Win32::Registry::RegCreateKeyEx(&HKEY_LOCAL_MACHINE,
+        'SYSTEM\\CurrentControlSet\\Hardware Profiles\\' .
+        '0001\\System\\CurrentControlSet\\Enum\\ROOT\\LEGACY_MOUCLASS\\0000',
+        &NULL, '', &NULL, &KEY_WRITE, &NULL, $hKey, $disp)) {
+    Win32::Setupsup::SetLastError(Win32::GetLastError());
+    return 0;
+  }
 
-	if(!Win32::Registry::RegSetValueEx($hKey, 'CSConfigFlags', &NULL, &REG_DWORD, 1))
-	{
-		Win32::Setupsup::SetLastError(Win32::GetLastError());
-		Win32::Registry::RegCloseKey($hKey);
-		return 0;
-	}
+  if (!Win32::Registry::RegSetValueEx($hKey, 'CSConfigFlags', &NULL,
+                                      &REG_DWORD, 1)) {
+    Win32::Setupsup::SetLastError(Win32::GetLastError());
+    Win32::Registry::RegCloseKey($hKey);
+    return 0;
+  }
 
-	Win32::Registry::RegCloseKey($hKey);
+  Win32::Registry::RegCloseKey($hKey);
 
-	return 1;
+  return 1;
 }
 
 
 # enables mouse input after reboot
 sub EnableMouseAfterReboot
 {
-	die "Usage: Win32::Setupsup::EnableMouseAfterReboot()\n" if($#_ != -1);
+  die "Usage: Win32::Setupsup::EnableMouseAfterReboot()\n" if($#_ != -1);
 
-	if(!Win32::Registry::RegCreateKeyEx(&HKEY_LOCAL_MACHINE, 'SYSTEM\\CurrentControlSet\\Hardware Profiles\\' .
-								'0001\\System\\CurrentControlSet\\Enum\\ROOT\\LEGACY_MOUCLASS\\0000',
-								&NULL, '', &NULL, &KEY_WRITE, &NULL, $hKey, $disp))
-	{
-		Win32::Setupsup::SetLastError(Win32::GetLastError());
-		return 0;
-	}
+  if (!Win32::Registry::RegCreateKeyEx(&HKEY_LOCAL_MACHINE,
+        'SYSTEM\\CurrentControlSet\\Hardware Profiles\\' .
+        '0001\\System\\CurrentControlSet\\Enum\\ROOT\\LEGACY_MOUCLASS\\0000',
+        &NULL, '', &NULL, &KEY_WRITE, &NULL, $hKey, $disp)) {
+    Win32::Setupsup::SetLastError(Win32::GetLastError());
+    return 0;
+  }
 
-	if(!Win32::Registry::RegSetValueEx($hKey, 'CSConfigFlags', &NULL, &REG_DWORD, 0))
-	{
-		Win32::Setupsup::SetLastError(Win32::GetLastError());
-		Win32::Registry::RegCloseKey($hKey);
-		return 0;
-	}
+  if (!Win32::Registry::RegSetValueEx($hKey, 'CSConfigFlags', &NULL,
+                                      &REG_DWORD, 0)) {
+    Win32::Setupsup::SetLastError(Win32::GetLastError());
+    Win32::Registry::RegCloseKey($hKey);
+    return 0;
+  }
 
-	Win32::Registry::RegCloseKey($hKey);
+  Win32::Registry::RegCloseKey($hKey);
 
-	return 1;
+  return 1;
 }
 
 
 # gets the program files directory from registry
 sub GetProgramFilesDir
 {
-	die "Usage: Win32::Setupsup::GetProgramFilesDir(\\\$dir)\n" if($#_);
+  die "Usage: Win32::Setupsup::GetProgramFilesDir(\\\$dir)\n" if($#_);
 
-	if(!Win32::Registry::RegOpenKeyEx(&HKEY_LOCAL_MACHINE, 'Software\Microsoft\Windows\CurrentVersion',
-							&NULL, &KEY_READ, $hKey))
-	{
-		Win32::Setupsup::SetLastError(Win32::GetLastError());
-		return 0;
-	}
+  if (!Win32::Registry::RegOpenKeyEx(&HKEY_LOCAL_MACHINE,
+        'Software\Microsoft\Windows\CurrentVersion', &NULL, &KEY_READ, $hKey)) {
+    Win32::Setupsup::SetLastError(Win32::GetLastError());
+    return 0;
+  }
 
-	if(!Win32::Registry::RegQueryValueEx($hKey, 'ProgramFilesDir', &NULL, &NULL, $_[0]))
-	{
-		Win32::Setupsup::SetLastError(Win32::GetLastError());
-		Win32::Registry::RegCloseKey($hKey);
-		return 0;
-	}
+  if (!Win32::Registry::RegQueryValueEx($hKey, 'ProgramFilesDir', &NULL,
+                                        &NULL, $_[0])) {
+    Win32::Setupsup::SetLastError(Win32::GetLastError());
+    Win32::Registry::RegCloseKey($hKey);
+    return 0;
+  }
 
-	Win32::Registry::RegCloseKey($hKey);
+  Win32::Registry::RegCloseKey($hKey);
 
-	return 1;
+  return 1;
 }
 
 
 # gets the common files directory from registry
 sub GetCommonFilesDir
 {
-	die "Usage: Win32::Setupsup::GetCommonFilesDir(\\\$dir)\n" if($#_);
+  die "Usage: Win32::Setupsup::GetCommonFilesDir(\\\$dir)\n" if($#_);
 
-	if(!Win32::Registry::RegOpenKeyEx(&HKEY_LOCAL_MACHINE, 'Software\Microsoft\Windows\CurrentVersion',
-								&NULL, &KEY_READ, $hKey))
-	{
-		Win32::Setupsup::SetLastError(Win32::GetLastError());
-		return 0;
-	}
+  if (!Win32::Registry::RegOpenKeyEx(&HKEY_LOCAL_MACHINE,
+        'Software\Microsoft\Windows\CurrentVersion', &NULL, &KEY_READ, $hKey)) {
+    Win32::Setupsup::SetLastError(Win32::GetLastError());
+    return 0;
+  }
 
-	if(!Win32::Registry::RegQueryValueEx($hKey, 'CommonFilesDir', &NULL, &NULL, $_[0]))
-	{
-		Win32::Setupsup::SetLastError(Win32::GetLastError());
-		Win32::Registry::RegCloseKey($hKey);
-		return 0;
-	}
+  if (!Win32::Registry::RegQueryValueEx($hKey, 'CommonFilesDir', &NULL,
+                                        &NULL, $_[0])) {
+    Win32::Setupsup::SetLastError(Win32::GetLastError());
+    Win32::Registry::RegCloseKey($hKey);
+    return 0;
+  }
 
-	Win32::Registry::RegCloseKey($hKey);
+  Win32::Registry::RegCloseKey($hKey);
 
-	return 1;
+  return 1;
 }
 
 
@@ -355,7 +348,7 @@ Win32::Setupsup - implements some functions to automate setups which have no sil
 
 =head1 SYNOPSIS
 
-	use Win32::Setupsup;
+        use Win32::Setupsup;
 
 
 =head1 DESCRIPTION
@@ -481,10 +474,10 @@ $timeout elapesed before a window was found. $refresh is optional but you should
 
 The following actions are defined:
 
-keys	: sends key strokes to the window
-close	: closes the window (sends a WM_CLOSE message)
-wait	: simply waits
-kill	: kills the process the window belongs to
+keys    : sends key strokes to the window
+close   : closes the window (sends a WM_CLOSE message)
+wait    : simply waits
+kill    : kills the process the window belongs to
 
 =item WaitForWindowClose($window, $timeout, [$refresh])
 
@@ -538,31 +531,31 @@ classmodule     : handle to class module that $window belongs
 classproc       : pointer to class procedure that $window belongs
 classstyle      : class style that $window belongs
 client          : $window's client rectangle
-desktop					: handle to desktop window
-dlgproc					: pointer to $window's dialog procedure (if $window belongs to a dialog)
+desktop                                 : handle to desktop window
+dlgproc                                 : pointer to $window's dialog procedure (if $window belongs to a dialog)
 enabled         : is $window enabled or not
 extstyle        : $window's extended style
-focused					: is $window focused or not
-foreground			: is $window the foreground window or not
-iconic					: is $window iconic or not
-id							: $window's id
+focused                                 : is $window focused or not
+foreground                      : is $window the foreground window or not
+iconic                                  : is $window iconic or not
+id                                                      : $window's id
 instance        : application instance that $window belongs
 lastactivepopup : handle to the last active popup window owned by $window
 menu            : handle to $window's menu
-next						: handle to $window's next window in z order
+next                                            : handle to $window's next window in z order
 parent          : handle to $window's parent window
-prev						: handle to $window's previous window in z order
+prev                                            : handle to $window's previous window in z order
 pid             : process id that $window belongs
 rect            : $window's rectangle on the desktop
-style						: $window's style
+style                                           : $window's style
 text            : $window's caption
-tid							: thread id that $window belongs
-top							: handle to $window's top window in z order
+tid                                                     : thread id that $window belongs
+top                                                     : handle to $window's top window in z order
 unicode         : is $window unicoded or not
 valid           : is $window a valid window or not
 visible         : is $window visible or not
 wndproc         : pointer to $window's procedure
-zoomed					: is $window zoomed or not
+zoomed                                  : is $window zoomed or not
 
 
 =item SetWindowProperties($window, \%windowprop)
@@ -671,10 +664,10 @@ Uncaptures a captured mouse pointer.
 die if(!Win32::Setupsup::GetProcessList('', \@proc, \@threads));
 
 foreach $item (@proc)
-	{ print "name: ${$item}{'name'}; pid: ${$item}{'pid'}\n";}
+        { print "name: ${$item}{'name'}; pid: ${$item}{'pid'}\n";}
 
 foreach $item (@threads)
-	{ print "tid: ${$item}{'tid'}; pidx: ${$item}{'process'}; process: ${$proc[${$item}{'process'}]}{'name'}\n"; }
+        { print "tid: ${$item}{'tid'}; pidx: ${$item}{'process'}; process: ${$proc[${$item}{'process'}]}{'name'}\n"; }
 
 =head1 AUTHOR
 

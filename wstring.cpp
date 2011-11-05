@@ -20,12 +20,12 @@
 
 int MBTWC(PSTR str, PWSTR wStr, int size)
 {
-	if(!wStr)
-		return 0;
+  if(!wStr)
+    return 0;
 
-	*wStr = '\0';
+  *wStr = '\0';
 
-	return MultiByteToWideChar(CP_ACP, 0, str, -1, wStr, size);
+  return MultiByteToWideChar(CP_ACP, 0, str, -1, wStr, size);
 }
 
 
@@ -43,18 +43,18 @@ int MBTWC(PSTR str, PWSTR wStr, int size)
 
 int WCTMB(PWSTR wStr, PSTR str, int size)
 {
-	if(!str)
-		return 0;
+  if(!str)
+    return 0;
 
-	*str = '\0';
+  *str = '\0';
 
-	return WideCharToMultiByte(CP_ACP, NULL, wStr, -1, str, size, NULL, NULL);
+  return WideCharToMultiByte(CP_ACP, NULL, wStr, -1, str, size, NULL, NULL);
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////
 //
-// allocates memory for a unicode string and copies a single byte string to a 
+// allocates memory for a unicode string and copies a single byte string to a
 // unicode string
 //
 // param:  str    - single byte string
@@ -67,21 +67,21 @@ int WCTMB(PWSTR wStr, PSTR str, int size)
 
 PWSTR S2W(PSTR str, int strLen)
 {
-	if(!str)
-		return NULL;
+  if(!str)
+    return NULL;
 
-	PWSTR wStr = NULL;
-	int len = strLen == -1 ? strlen(str) + 1 : strLen;
+  PWSTR wStr = NULL;
+  int len = strLen == -1 ? strlen(str) + 1 : strLen;
 
-	MBTWC(str, wStr = (PWSTR)NewMem(sizeof(WCHAR) * len), len);
+  MBTWC(str, wStr = (PWSTR)NewMem(sizeof(WCHAR) * len), len);
 
-	return wStr;
+  return wStr;
 }
 
 
 ///////////////////////////////////////////////////////////////////////////////
 //
-// allocates memory for a single byte string and copies a unicode string to a 
+// allocates memory for a single byte string and copies a unicode string to a
 // single byte string
 //
 // param:  wStr   - unicode string
@@ -94,15 +94,15 @@ PWSTR S2W(PSTR str, int strLen)
 
 PSTR W2S(PWSTR wStr, int strLen)
 {
-	if(!wStr)
-		return NULL;
+  if(!wStr)
+    return NULL;
 
-	PSTR str = NULL;
-	int len = strLen == -1 ? wcslen(wStr) + 1 : strLen;
+  PSTR str = NULL;
+  int len = strLen == -1 ? wcslen(wStr) + 1 : strLen;
 
-	WCTMB(wStr, str = (PSTR)NewMem(len), len);
+  WCTMB(wStr, str = (PSTR)NewMem(len), len);
 
-	return str;
+  return str;
 }
 
 
@@ -118,8 +118,8 @@ PSTR W2S(PWSTR wStr, int strLen)
 
 void FreeStr(PSTR str)
 {
-	if(str)
-		FreeMem(str);
+  if(str)
+    FreeMem(str);
 }
 
 
@@ -135,8 +135,8 @@ void FreeStr(PSTR str)
 
 void FreeStr(PWSTR wStr)
 {
-	if(wStr)
-		FreeMem(wStr);
+  if(wStr)
+    FreeMem(wStr);
 }
 
 

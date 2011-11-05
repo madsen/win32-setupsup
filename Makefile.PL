@@ -1,25 +1,64 @@
-use ExtUtils::MakeMaker;
+use strict;
 
-#---------------------------------------------------------------------
-if ($] < 5.006) {
+BEGIN {
+  die "OS unsupported\n" unless $^O =~ /MSWin32/;
+
+  if ($] < 5.006) {
+    print STDERR <<"";
+  This Makefile.PL requires Perl 5.6 or better.
+  Use Win32::Setupsup 1.01 with older versions of Perl:
+    http://www.cpan.org/modules/by-module/Win32/setupsup.1.0.1.0.zip
+
+    exit 1;
+  } # end if version too small
+}
+
+use warnings;
+
+use Config qw(%Config);
+use ExtUtils::MakeMaker 6.30;
+
+if ($Config{cc} =~ /gcc/i) {
   print STDERR <<"";
-This Makefile.PL requires Perl 5.6 or better.
-Use Win32::Setupsup 1.01 with older versions of Perl:
-  http://www.cpan.org/modules/by-module/Win32/setupsup.1.0.1.0.zip
+  Sorry, but Win32::Setupsup uses Microsoft's Structured Exception Handling,
+  which is not supported by MinGW's gcc.  Therefore, it does not work with
+  Strawberry Perl.  Porting help is welcome.
 
-  exit 1;
-} # end if version too small
+  die "OS unsupported\n";
+}
 
 #---------------------------------------------------------------------
-my $mm = WriteMakefile(
- NAME           => 'Win32::Setupsup',
- AUTHOR         => 'Jens Helberg (jens.helberg@de.bosch.com)',
- ABSTRACT       => 'Remote control for windows applications.',
- DEFINE         => '-DPERL_5_6_0',
- OBJECT => 'list.obj misc.obj plmisc.obj setupsup.obj wstring.obj resource.res',
- PREREQ_PM      => { 'Win32::Registry' => 0 },
- 'VERSION_FROM' => 'Setupsup.pm', # finds $VERSION
+
+my %args = (
+  NAME           => 'Win32::Setupsup',
+  AUTHOR         => 'Christopher J. Madsen <perl@cjmweb.net>',
+  ABSTRACT       => 'Remote control for Windows applications',
+  DEFINE         => '-DPERL_5_6_0',
+  OBJECT => 'list.obj misc.obj plmisc.obj setupsup.obj wstring.obj resource.res',
+  PREREQ_PM      => { 'Win32::Registry' => 0 },
+  VERSION_FROM   => 'Setupsup.pm', # finds $VERSION
 );
+
+unless ( eval { ExtUtils::MakeMaker->VERSION(6.56) } ) {
+  my $br = delete $args{BUILD_REQUIRES};
+  my $pp = $args{PREREQ_PM};
+  for my $mod ( keys %$br ) {
+    if ( exists $pp->{$mod} ) {
+      $pp->{$mod} = $br->{$mod} if $br->{$mod} > $pp->{$mod};
+    }
+    else {
+      $pp->{$mod} = $br->{$mod};
+    }
+  }
+}
+
+delete $args{CONFIGURE_REQUIRES}
+  unless eval { ExtUtils::MakeMaker->VERSION(6.52) };
+
+delete $args{LICENSE}
+  unless eval { ExtUtils::MakeMaker->VERSION(6.31) };
+
+my $mm = WriteMakefile(%args);
 
 #---------------------------------------------------------------------
 print "Exporting version number to afxres.h\n";

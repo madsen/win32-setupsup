@@ -32,6 +32,7 @@ use 5.006;
 use strict;
 use warnings;
 
+use Carp 'croak';
 use Exporter 'import';
 use Win32::Registry;
 use XSLoader ();
@@ -39,7 +40,8 @@ use XSLoader ();
 our $VERSION = '1.03';
 # This file is part of {{$dist}} {{$dist_version}} ({{$date}})
 
-die "The Win32::Setupsup module works only on Windows NT" if(!Win32::IsWinNT());
+croak("The Win32::Setupsup module works only on Windows NT")
+    unless Win32::IsWinNT();
 
 # Items to export into caller's namespace by default. Note: do not export
 # names by default without a very good reason. Use EXPORT_OK instead.
@@ -180,8 +182,7 @@ sub AUTOLOAD
       $AutoLoader::AUTOLOAD = $AUTOLOAD;
       goto &AutoLoader::AUTOLOAD;
     } else {
-      my ($file,$line) = (caller)[1,2];
-      die "Your vendor has not defined Win32::Setupsup macro $constname, used in $file at line $line.";
+      croak "Your vendor has not defined Win32::Setupsup macro $constname";
     }
   }
   eval "sub $AUTOLOAD { $val }";
@@ -192,7 +193,7 @@ sub AUTOLOAD
 # disables keyboard input after reboot
 sub DisableKeyboardAfterReboot
 {
-  die "Usage: Win32::Setupsup::DisableKeyboardAfterReboot()\n" if($#_ != -1);
+  croak "Usage: Win32::Setupsup::DisableKeyboardAfterReboot()" if @_;
 
   my ($hKey, $disp);
   if (!Win32::Registry::RegCreateKeyEx( &HKEY_LOCAL_MACHINE,
@@ -219,7 +220,7 @@ sub DisableKeyboardAfterReboot
 # enables keyboard input after reboot
 sub EnableKeyboardAfterReboot
 {
-  die "Usage: Win32::Setupsup::EnableKeyboardAfterReboot()\n" if($#_ != -1);
+  croak "Usage: Win32::Setupsup::EnableKeyboardAfterReboot()" if @_;
 
   my ($hKey, $disp);
   if (!Win32::Registry::RegCreateKeyEx(&HKEY_LOCAL_MACHINE,
@@ -246,7 +247,7 @@ sub EnableKeyboardAfterReboot
 # disables mouse input after reboot
 sub DisableMouseAfterReboot
 {
-  die "Usage: Win32::Setupsup::DisableMouseAfterReboot()\n" if($#_ != -1);
+  croak "Usage: Win32::Setupsup::DisableMouseAfterReboot()" if @_;
 
   my ($hKey, $disp);
   if (!Win32::Registry::RegCreateKeyEx(&HKEY_LOCAL_MACHINE,
@@ -273,7 +274,7 @@ sub DisableMouseAfterReboot
 # enables mouse input after reboot
 sub EnableMouseAfterReboot
 {
-  die "Usage: Win32::Setupsup::EnableMouseAfterReboot()\n" if($#_ != -1);
+  croak "Usage: Win32::Setupsup::EnableMouseAfterReboot()" if @_;
 
   my ($hKey, $disp);
   if (!Win32::Registry::RegCreateKeyEx(&HKEY_LOCAL_MACHINE,
@@ -300,7 +301,7 @@ sub EnableMouseAfterReboot
 # gets the program files directory from registry
 sub GetProgramFilesDir
 {
-  die "Usage: Win32::Setupsup::GetProgramFilesDir(\\\$dir)\n" if($#_);
+  croak "Usage: Win32::Setupsup::GetProgramFilesDir(\\\$dir)" if ($#_);
 
   my $hKey;
   if (!Win32::Registry::RegOpenKeyEx(&HKEY_LOCAL_MACHINE,
@@ -325,7 +326,7 @@ sub GetProgramFilesDir
 # gets the common files directory from registry
 sub GetCommonFilesDir
 {
-  die "Usage: Win32::Setupsup::GetCommonFilesDir(\\\$dir)\n" if($#_);
+  croak "Usage: Win32::Setupsup::GetCommonFilesDir(\\\$dir)\n" if($#_);
 
   my $hKey;
   if (!Win32::Registry::RegOpenKeyEx(&HKEY_LOCAL_MACHINE,

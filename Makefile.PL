@@ -1,7 +1,8 @@
 use strict;
 
 BEGIN {
-  die "OS unsupported\n" unless $^O =~ /MSWin32/;
+  die "The Win32::Setupsup module works only on Windows NT\nOS unsupported\n"
+      unless eval { Win32::IsWinNT() };
 
   if ($] < 5.006) {
     print STDERR <<"";
@@ -35,8 +36,9 @@ my %args = (
   ABSTRACT       => 'Remote control for Windows applications',
   DEFINE         => '-DPERL_5_6_0',
   OBJECT => 'list.obj misc.obj plmisc.obj setupsup.obj wstring.obj resource.res',
-  PREREQ_PM      => { 'Win32::Registry' => 0 },
   VERSION_FROM   => 'Setupsup.pm', # finds $VERSION
+##{ $plugin->get_prereqs ##}
+##{ $plugin->get_default(qw(LICENSE)) ##}
 );
 
 unless ( eval { ExtUtils::MakeMaker->VERSION(6.56) } ) {

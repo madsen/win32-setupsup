@@ -2,9 +2,13 @@
 \$$
 \.c$
 \.cmd$
+\.def$
 \.gz$
 \.o$
 \.obj$
+\.old$
+\.res$
+\.RES$
 \.pdb$
 \.tmp$
 ^\#

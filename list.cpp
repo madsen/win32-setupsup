@@ -751,6 +751,7 @@ BOOL List::Compress()
 
 BOOL List::Check()
 {
+  {
 	// first walk forward
 	for(PNode node = m_Head; node; )
 	{
@@ -760,9 +761,9 @@ BOOL List::Check()
 		if(!node->Next())
 			return FALSE;
 	}
-
+  }
 	// then walk backward
-	for(node = m_Tail; node; )
+	for(PNode node = m_Tail; node; )
 	{
 		if(node->Prev() == m_Head)
 			break;

@@ -29,19 +29,19 @@ package Win32::Setupsup;
 # but it should work on win95/98/me too
 
 require Exporter;
-require DynaLoader;
 use 5.006;
 use strict;
 use warnings;
 
 use Win32::Registry;
+use XSLoader ();
 
-our $VERSION = '1.02';
+our $VERSION = '1.03';
 # This file is part of {{$dist}} {{$dist_version}} ({{$date}})
 
 die "The Win32::Setupsup module works only on Windows NT" if(!Win32::IsWinNT());
 
-our @ISA= qw(Exporter DynaLoader);
+our @ISA= qw(Exporter);
 
 # Items to export into caller's namespace by default. Note: do not export
 # names by default without a very good reason. Use EXPORT_OK instead.
@@ -349,7 +349,7 @@ sub GetCommonFilesDir
 }
 
 
-__PACKAGE__->bootstrap;
+XSLoader::load(__PACKAGE__, $VERSION);
 
 1;
 

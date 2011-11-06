@@ -34,7 +34,9 @@ use warnings;
 
 use Carp 'croak';
 use Exporter 'import';
-use Win32::Registry;
+use Win32API::Registry qw(RegCloseKey RegCreateKeyEx RegOpenKeyEx
+                          RegQueryValueEx RegSetValueEx regLastError
+                          :KEY_ :HKEY_ :REG_);
 use XSLoader ();
 
 our $VERSION = '1.03';
@@ -42,6 +44,11 @@ our $VERSION = '1.03';
 
 croak("The Win32::Setupsup module works only on Windows NT")
     unless Win32::IsWinNT();
+
+# Aid porting from Win32::Registry:
+sub NULL () { [] }
+sub DWORD_1 () { "\x01\0\0\0" }
+sub DWORD_0 () { "\0\0\0\0" }
 
 # Items to export into caller's namespace by default. Note: do not export
 # names by default without a very good reason. Use EXPORT_OK instead.
@@ -196,22 +203,21 @@ sub DisableKeyboardAfterReboot
   croak "Usage: Win32::Setupsup::DisableKeyboardAfterReboot()" if @_;
 
   my ($hKey, $disp);
-  if (!Win32::Registry::RegCreateKeyEx( &HKEY_LOCAL_MACHINE,
+  if (!RegCreateKeyEx( HKEY_LOCAL_MACHINE,
         'SYSTEM\\CurrentControlSet\\Hardware Profiles\\' .
         '0001\\System\\CurrentControlSet\\Enum\\ROOT\\LEGACY_KBDCLASS\\0000',
-        &NULL, '', &NULL, &KEY_WRITE, &NULL, $hKey, $disp)) {
-    Win32::Setupsup::SetLastError(Win32::GetLastError());
+        NULL, '', NULL, KEY_WRITE, NULL, $hKey, $disp)) {
+    Win32::Setupsup::SetLastError(regLastError());
     return 0;
   }
 
-  if (!Win32::Registry::RegSetValueEx($hKey, 'CSConfigFlags', &NULL,
-                                      &REG_DWORD, 1)) {
-    Win32::Setupsup::SetLastError(Win32::GetLastError());
-    Win32::Registry::RegCloseKey($hKey);
+  if (!RegSetValueEx($hKey, 'CSConfigFlags', NULL, REG_DWORD, DWORD_1)) {
+    Win32::Setupsup::SetLastError(regLastError());
+    RegCloseKey($hKey);
     return 0;
   }
 
-  Win32::Registry::RegCloseKey($hKey);
+  RegCloseKey($hKey);
 
   return 1;
 }
@@ -223,22 +229,21 @@ sub EnableKeyboardAfterReboot
   croak "Usage: Win32::Setupsup::EnableKeyboardAfterReboot()" if @_;
 
   my ($hKey, $disp);
-  if (!Win32::Registry::RegCreateKeyEx(&HKEY_LOCAL_MACHINE,
+  if (!RegCreateKeyEx(HKEY_LOCAL_MACHINE,
         'SYSTEM\\CurrentControlSet\\Hardware Profiles\\' .
         '0001\\System\\CurrentControlSet\\Enum\\ROOT\\LEGACY_KBDCLASS\\0000',
-        &NULL, '', &NULL, &KEY_WRITE, &NULL, $hKey, $disp)) {
-    Win32::Setupsup::SetLastError(Win32::GetLastError());
+        NULL, '', NULL, KEY_WRITE, NULL, $hKey, $disp)) {
+    Win32::Setupsup::SetLastError(regLastError());
     return 0;
   }
 
-  if (!Win32::Registry::RegSetValueEx($hKey, 'CSConfigFlags', &NULL,
-                                      &REG_DWORD, 0)) {
-    Win32::Setupsup::SetLastError(Win32::GetLastError());
-    Win32::Registry::RegCloseKey($hKey);
+  if (!RegSetValueEx($hKey, 'CSConfigFlags', NULL, REG_DWORD, DWORD_0)) {
+    Win32::Setupsup::SetLastError(regLastError());
+    RegCloseKey($hKey);
     return 0;
   }
 
-  Win32::Registry::RegCloseKey($hKey);
+  RegCloseKey($hKey);
 
   return 1;
 }
@@ -250,22 +255,21 @@ sub DisableMouseAfterReboot
   croak "Usage: Win32::Setupsup::DisableMouseAfterReboot()" if @_;
 
   my ($hKey, $disp);
-  if (!Win32::Registry::RegCreateKeyEx(&HKEY_LOCAL_MACHINE,
+  if (!RegCreateKeyEx(HKEY_LOCAL_MACHINE,
         'SYSTEM\\CurrentControlSet\\Hardware Profiles\\' .
         '0001\\System\\CurrentControlSet\\Enum\\ROOT\\LEGACY_MOUCLASS\\0000',
-        &NULL, '', &NULL, &KEY_WRITE, &NULL, $hKey, $disp)) {
-    Win32::Setupsup::SetLastError(Win32::GetLastError());
+        NULL, '', NULL, KEY_WRITE, NULL, $hKey, $disp)) {
+    Win32::Setupsup::SetLastError(regLastError());
     return 0;
   }
 
-  if (!Win32::Registry::RegSetValueEx($hKey, 'CSConfigFlags', &NULL,
-                                      &REG_DWORD, 1)) {
-    Win32::Setupsup::SetLastError(Win32::GetLastError());
-    Win32::Registry::RegCloseKey($hKey);
+  if (!RegSetValueEx($hKey, 'CSConfigFlags', NULL, REG_DWORD, DWORD_1)) {
+    Win32::Setupsup::SetLastError(regLastError());
+    RegCloseKey($hKey);
     return 0;
   }
 
-  Win32::Registry::RegCloseKey($hKey);
+  RegCloseKey($hKey);
 
   return 1;
 }
@@ -277,22 +281,21 @@ sub EnableMouseAfterReboot
   croak "Usage: Win32::Setupsup::EnableMouseAfterReboot()" if @_;
 
   my ($hKey, $disp);
-  if (!Win32::Registry::RegCreateKeyEx(&HKEY_LOCAL_MACHINE,
+  if (!RegCreateKeyEx(HKEY_LOCAL_MACHINE,
         'SYSTEM\\CurrentControlSet\\Hardware Profiles\\' .
         '0001\\System\\CurrentControlSet\\Enum\\ROOT\\LEGACY_MOUCLASS\\0000',
-        &NULL, '', &NULL, &KEY_WRITE, &NULL, $hKey, $disp)) {
-    Win32::Setupsup::SetLastError(Win32::GetLastError());
+        NULL, '', NULL, KEY_WRITE, NULL, $hKey, $disp)) {
+    Win32::Setupsup::SetLastError(regLastError());
     return 0;
   }
 
-  if (!Win32::Registry::RegSetValueEx($hKey, 'CSConfigFlags', &NULL,
-                                      &REG_DWORD, 0)) {
-    Win32::Setupsup::SetLastError(Win32::GetLastError());
-    Win32::Registry::RegCloseKey($hKey);
+  if (!RegSetValueEx($hKey, 'CSConfigFlags', NULL, REG_DWORD, DWORD_0)) {
+    Win32::Setupsup::SetLastError(regLastError());
+    RegCloseKey($hKey);
     return 0;
   }
 
-  Win32::Registry::RegCloseKey($hKey);
+  RegCloseKey($hKey);
 
   return 1;
 }
@@ -304,20 +307,19 @@ sub GetProgramFilesDir
   croak "Usage: Win32::Setupsup::GetProgramFilesDir(\\\$dir)" if ($#_);
 
   my $hKey;
-  if (!Win32::Registry::RegOpenKeyEx(&HKEY_LOCAL_MACHINE,
-        'Software\Microsoft\Windows\CurrentVersion', &NULL, &KEY_READ, $hKey)) {
-    Win32::Setupsup::SetLastError(Win32::GetLastError());
+  if (!RegOpenKeyEx(HKEY_LOCAL_MACHINE,
+        'Software\Microsoft\Windows\CurrentVersion', NULL, KEY_READ, $hKey)) {
+    Win32::Setupsup::SetLastError(regLastError());
     return 0;
   }
 
-  if (!Win32::Registry::RegQueryValueEx($hKey, 'ProgramFilesDir', &NULL,
-                                        &NULL, $_[0])) {
-    Win32::Setupsup::SetLastError(Win32::GetLastError());
-    Win32::Registry::RegCloseKey($hKey);
+  if (!RegQueryValueEx($hKey, 'ProgramFilesDir', NULL, NULL, $_[0])) {
+    Win32::Setupsup::SetLastError(regLastError());
+    RegCloseKey($hKey);
     return 0;
   }
 
-  Win32::Registry::RegCloseKey($hKey);
+  RegCloseKey($hKey);
 
   return 1;
 }
@@ -329,20 +331,19 @@ sub GetCommonFilesDir
   croak "Usage: Win32::Setupsup::GetCommonFilesDir(\\\$dir)\n" if($#_);
 
   my $hKey;
-  if (!Win32::Registry::RegOpenKeyEx(&HKEY_LOCAL_MACHINE,
-        'Software\Microsoft\Windows\CurrentVersion', &NULL, &KEY_READ, $hKey)) {
-    Win32::Setupsup::SetLastError(Win32::GetLastError());
+  if (!RegOpenKeyEx(HKEY_LOCAL_MACHINE,
+        'Software\Microsoft\Windows\CurrentVersion', NULL, KEY_READ, $hKey)) {
+    Win32::Setupsup::SetLastError(regLastError());
     return 0;
   }
 
-  if (!Win32::Registry::RegQueryValueEx($hKey, 'CommonFilesDir', &NULL,
-                                        &NULL, $_[0])) {
-    Win32::Setupsup::SetLastError(Win32::GetLastError());
-    Win32::Registry::RegCloseKey($hKey);
+  if (!RegQueryValueEx($hKey, 'CommonFilesDir', NULL, NULL, $_[0])) {
+    Win32::Setupsup::SetLastError(regLastError());
+    RegCloseKey($hKey);
     return 0;
   }
 
-  Win32::Registry::RegCloseKey($hKey);
+  RegCloseKey($hKey);
 
   return 1;
 }
@@ -450,6 +451,8 @@ GetProgramFilesDir
 GetThreadLastError
 SetLastError
 constant
+^DWORD_\d$
+^NULL$
 
 =over
 

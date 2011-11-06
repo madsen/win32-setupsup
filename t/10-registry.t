@@ -7,11 +7,9 @@
 # Change 1..1 below to 1..last_test_to_print .
 # (It may become useful if the test is moved to ./t subdirectory.)
 
-BEGIN { $| = 1; print "1..3\n"; }
-END {print "not ok 1\n" unless $loaded;}
-use Win32::Setupsup;
-$loaded = 1;
-print "ok 1\n";
+use Test::More tests => 5;
+
+BEGIN { use_ok('Win32::Setupsup') }
 
 ######################### End of black magic.
 
@@ -27,10 +25,8 @@ use Win32::TieRegistry ( Delimiter=>"/", ArrayValues=>0 );
 my $winReg = $Registry->{'LMachine/Software/Microsoft/Windows/CurrentVersion/'};
 
 my $value;
-print "not " unless Win32::Setupsup::GetProgramFilesDir($value)
-                and $value eq $winReg->{ProgramFilesDir};
-print "ok 2\n";
+ok(Win32::Setupsup::GetProgramFilesDir($value));
+is($value, $winReg->{ProgramFilesDir});
 
-print "not " unless Win32::Setupsup::GetCommonFilesDir($value)
-                and $value eq $winReg->{CommonFilesDir};
-print "ok 3\n";
+ok(Win32::Setupsup::GetCommonFilesDir($value));
+is($value, $winReg->{CommonFilesDir});

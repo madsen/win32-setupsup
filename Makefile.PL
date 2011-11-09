@@ -32,13 +32,11 @@ if ($Config{cc} =~ /gcc/i) {
 
 my %args = (
   NAME           => 'Win32::Setupsup',
-  AUTHOR         => 'Christopher J. Madsen <perl@cjmweb.net>',
-  ABSTRACT       => 'Remote control for Windows applications',
   DEFINE         => '-DPERL_5_6_0',
   OBJECT => 'list.obj misc.obj plmisc.obj setupsup.obj wstring.obj resource.res',
   VERSION_FROM   => 'Setupsup.pm', # finds $VERSION
 ##{ $plugin->get_prereqs ##}
-##{ $plugin->get_default(qw(LICENSE)) ##}
+##{ $plugin->get_default(qw(ABSTRACT AUTHOR LICENSE)) ##}
 );
 
 unless ( eval { ExtUtils::MakeMaker->VERSION(6.56) } ) {

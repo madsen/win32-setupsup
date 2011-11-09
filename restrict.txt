@@ -1,4 +1,0 @@
-Known restrictions and bugs:
-
-
-Currently, there are no known restrictions.

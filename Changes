@@ -1,6 +1,6 @@
 Revision history for Perl extension Win32::Setupsup.
 
-1.03  NOT
+1.03  November 11, 2011
 	- use Win32API::Registry instead of Win32::Registry
 	- use XSLoader instead of DynaLoader
 

@@ -14,8 +14,8 @@
 ^\#
 ^MANIFEST\.
 ^Makefile$
-^MYMETA.yml
-^README.md
+^MYMETA\.
+^README\.md
 ^\.
 ^blib/
 \bcjm_

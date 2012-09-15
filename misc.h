@@ -593,10 +593,10 @@ int SaveExceptionInformation(PEXCEPTION_POINTERS exception,
 
 #define CARE_INIT_CRIT_SECT(sect)                                       \
   ( !( (sect)->DebugInfo ) || IsBadCodePtr( (FARPROC) ( (sect)->DebugInfo ) )  ? \
-    InitializeCriticalSection(sect) : 0 )
+    InitializeCriticalSection(sect) : (void)0 )
 
 #define CARE_DEL_CRIT_SECT(sect)                                        \
-  ( !IsBadCodePtr( (FARPROC) ( (sect)->DebugInfo ) ) ? DeleteCriticalSection(sect) : 0, \
+  ( !IsBadCodePtr( (FARPROC) ( (sect)->DebugInfo ) ) ? DeleteCriticalSection(sect) : (void)0, \
     ZeroMemory( sect, sizeof(*sect) )  )
 
 #define CARE_ENTER_CRIT_SECT(sect)                              \

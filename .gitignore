@@ -15,6 +15,7 @@ afxres.h
 *.bs
 *.c
 *.def
+*.o
 *.obj
 *.old
 *.pdb

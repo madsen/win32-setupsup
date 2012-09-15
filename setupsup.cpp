@@ -11,6 +11,11 @@
 #include "wstring.h"
 #include "usererror.h"
 
+#ifdef __MINGW32__
+#define __try                             /* fake SEH */
+#define __leave   goto finally_jump_here  /* fake SEH */
+#define __finally finally_jump_here:      /* fake SEH */
+#endif
 
 ///////////////////////////////////////////////////////////////////////////////
 //

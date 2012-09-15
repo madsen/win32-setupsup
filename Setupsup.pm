@@ -39,7 +39,7 @@ use Win32API::Registry qw(RegCloseKey RegCreateKeyEx RegOpenKeyEx
                           :KEY_ :HKEY_ :REG_);
 use XSLoader ();
 
-our $VERSION = '1.03';
+our $VERSION = '1.10';
 # This file is part of {{$dist}} {{$dist_version}} ({{$date}})
 
 croak("The Win32::Setupsup module works only on Windows NT")

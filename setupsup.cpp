@@ -2421,14 +2421,15 @@ BOOL ConvertStrToSid(PERL_CALL SV *server, SV *sid, SV *account, DWORD *lastErro
     sidTokens[0] = sidStr;
 
     // tokenize sid string
-    for(int count = 1; TRUE; count++) {
+    int count = 1;
+    while (TRUE) {
       PSTR token = strchr(sidTokens[count - 1], '-');
 
       if(!token || count >= MAX_SID_TOKENS)
         break;
 
       *token++ = 0;
-      sidTokens[count] = token;
+      sidTokens[count++] = token;
     }
 
     // check sid string syntax
@@ -2465,7 +2466,8 @@ BOOL ConvertStrToSid(PERL_CALL SV *server, SV *sid, SV *account, DWORD *lastErro
 
     memset(&subAuthorities, 0, sizeof(subAuthorities));
 
-    for(count = 3; count < MAX_SID_TOKENS && sidTokens[count]; count++)
+    count = 3;
+    for(; count < MAX_SID_TOKENS && sidTokens[count]; count++)
       if(sscanf(sidTokens[count], "%lu", &subAuthorities[count - 3]) != 1)
         LeaveFalseError(INVALID_SID_ERROR);
 
@@ -2831,7 +2833,8 @@ BOOL GetProcessAndThreadList(PERL_CALL SV *server, AV *processList, AV *threadLi
     else
       hKeyPerfData = HKEY_PERFORMANCE_DATA;
 
-    for(DWORD perfDataSize = PERF_DATA_SIZE, count = 1; TRUE;
+    DWORD count = 1;
+    for(DWORD perfDataSize = PERF_DATA_SIZE; TRUE;
         perfDataSize = ++count * PERF_DATA_SIZE) {
       if(!(perfData = (PPERF_DATA_BLOCK) new char[perfDataSize]))
         LeaveFalseError(NOT_ENOUGTH_MEMORY_ERROR);
@@ -2855,7 +2858,8 @@ BOOL GetProcessAndThreadList(PERL_CALL SV *server, AV *processList, AV *threadLi
       processPerfObj = NULL, threadPerfObj = NULL;
 
     // get performance objects for processes and threads
-    for(count = 0; count < perfData->NumObjectTypes; count++) {
+    count = 0;
+    for(; count < perfData->NumObjectTypes; count++) {
       if(perfObj->ObjectNameTitleIndex == processId)
         processPerfObj = perfObj;
 
@@ -2877,7 +2881,8 @@ BOOL GetProcessAndThreadList(PERL_CALL SV *server, AV *processList, AV *threadLi
     int processIdCounter = 0;
 
     // get process id offset
-    for(count = 0; count < processPerfObj->NumCounters; count++) {
+    count = 0;
+    for(; count < processPerfObj->NumCounters; count++) {
       if(processPerfDef->CounterNameTitleIndex == idProcessId) {
         processIdCounter = processPerfDef->CounterOffset;
         break;
@@ -2894,7 +2899,8 @@ BOOL GetProcessAndThreadList(PERL_CALL SV *server, AV *processList, AV *threadLi
       ((PSTR)processPerfObj + processPerfObj->DefinitionLength);
 
     // get process names and id's
-    for(count = 0; count < (DWORD)processPerfObj->NumInstances; count++) {
+    count = 0;
+    for(; count < (DWORD)processPerfObj->NumInstances; count++) {
       PPERF_COUNTER_BLOCK perfCntBlk =
         (PPERF_COUNTER_BLOCK)((PSTR)processPerfInst + processPerfInst->ByteLength);
 
@@ -2929,7 +2935,8 @@ BOOL GetProcessAndThreadList(PERL_CALL SV *server, AV *processList, AV *threadLi
     int threadIdCounter = 0;
 
     // get thread id offset
-    for(count = 0; count < threadPerfObj->NumCounters; count++) {
+    count = 0;
+    for(; count < threadPerfObj->NumCounters; count++) {
       if(threadPerfDef->CounterNameTitleIndex == idThreadId) {
         threadIdCounter = threadPerfDef->CounterOffset;
         break;
@@ -2946,7 +2953,8 @@ BOOL GetProcessAndThreadList(PERL_CALL SV *server, AV *processList, AV *threadLi
       ((PSTR)threadPerfObj + threadPerfObj->DefinitionLength);
 
     // get thread names and id's
-    for(count = 0; count < (DWORD)threadPerfObj->NumInstances; count++) {
+    count = 0;
+    for(; count < (DWORD)threadPerfObj->NumInstances; count++) {
       PPERF_COUNTER_BLOCK perfCntBlk =
         (PPERF_COUNTER_BLOCK)((PSTR)threadPerfInst + threadPerfInst->ByteLength);
 

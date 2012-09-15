@@ -23,6 +23,10 @@
 //
 ///////////////////////////////////////////////////////////////////////////////
 
+// Use non-deprecated names
+#define stricmp  _stricmp
+#define strnicmp _strnicmp
+
 // defines key codes
 #define VK_ALT_DN_STR           "ALT+"
 #define VK_ALT_UP_STR           "ALT-"

@@ -1,7 +1,8 @@
 Revision history for Perl extension Win32::Setupsup.
 
 1.10  NOT
-	- port to Strawberry Perl
+	- port to Strawberry Perl and gcc
+	- fix old C++ syntax to work with Visual C++ 2010
 	- fix refresh parameter in WaitForWindowClose (was ignored)
 
 

@@ -738,14 +738,6 @@ Uncaptures a captured mouse pointer.
 
 =back
 
-=head1 INCOMPATIBILITIES
-
-The C++ part of Win32::Setupsup uses Microsoft's Structured Exception
-Handling, which is not supported by MinGW's C<gcc>.  Therefore, it does
-not work with Strawberry Perl.  You need to compile Perl (and
-Win32::Setupsup) with Microsoft's Visual C++.  Porting help is
-welcome.
-
 
 =head1 SEE ALSO
 

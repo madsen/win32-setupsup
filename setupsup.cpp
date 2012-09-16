@@ -1320,7 +1320,7 @@ XS(XS_NT__Setupsup_WaitForWindowClose)
      (items == 2 || SvIOKp(ST(2)))) {
     HWND hWnd = (HWND)SvIV(ST(0));
     DWORD timeout = SvIV(ST(1));
-    DWORD refresh = items == 4 ? SvIV(ST(2)) : 0;
+    DWORD refresh = items == 3 ? SvIV(ST(2)) : 0;
 
     for(DWORD startTime = GetTickCount(), curTime = startTime; TRUE;
         curTime = GetTickCount()) {

@@ -2,6 +2,7 @@ Revision history for Perl extension Win32::Setupsup.
 
 1.10  NOT
 	- port to Strawberry Perl
+	- fix refresh parameter in WaitForWindowClose (was ignored)
 
 
 1.03  November 11, 2011

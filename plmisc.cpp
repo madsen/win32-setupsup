@@ -23,12 +23,6 @@
 //
 ///////////////////////////////////////////////////////////////////////////////
 
-// critical section object to protect the access to the lastError
-CRITICAL_SECTION LastErrorCritSection;
-
-// last error variable
-//DWORD lastError = 0;
-
 // index to access tls space
 DWORD TlsIndex = -1;
 
@@ -633,11 +627,7 @@ SV *NewReference(PERL_CALL SV *refObj)
 
 DWORD LastError(DWORD error)
 {
-  //EnterCriticalSection(&LastErrorCritSection);
-
   TlsSetValue(TlsIndex, (PVOID)error);
-
-  //LeaveCriticalSection(&LastErrorCritSection);
 
   return error;
 }
@@ -655,13 +645,5 @@ DWORD LastError(DWORD error)
 
 DWORD LastError()
 {
-  //EnterCriticalSection(&LastErrorCritSection);
-
-  //DWORD error = lastError;
-
-  //LeaveCriticalSection(&LastErrorCritSection);
-
-  //return error;
-
   return (DWORD)TlsGetValue(TlsIndex);
 }

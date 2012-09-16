@@ -3857,7 +3857,6 @@ BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD reason, LPVOID reserved)
    case DLL_PROCESS_ATTACH:
     if((TlsIndex = TlsAlloc()) == -1)
       return 0;
-    CARE_INIT_CRIT_SECT(&LastErrorCritSection);
     break;
 
    case DLL_THREAD_ATTACH:
@@ -3880,7 +3879,6 @@ BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD reason, LPVOID reserved)
 
     // free list memory
     AsynchThreadList.RemoveAll();
-    CARE_DEL_CRIT_SECT(&LastErrorCritSection);
     TlsFree(TlsIndex);
     break;
   }

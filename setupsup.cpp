@@ -3849,6 +3849,7 @@ XS(boot_Win32__Setupsup)
 //
 ///////////////////////////////////////////////////////////////////////////////
 
+extern "C"
 BOOL WINAPI DllMain(HINSTANCE hInstance, DWORD reason, LPVOID reserved)
 {
   BOOL result = TRUE;

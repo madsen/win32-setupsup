@@ -23,7 +23,7 @@ use ExtUtils::MakeMaker 6.30;
 
 my %args = (
   NAME           => 'Win32::Setupsup',
-  DEFINE         => '-DPERL_5_6_0',
+  DEFINE         => '-DPERL_5_6_0 -D_CRT_SECURE_NO_WARNINGS',
   OBJECT => 'list.obj misc.obj plmisc.obj setupsup.obj wstring.obj resource.res',
   VERSION_FROM   => 'Setupsup.pm', # finds $VERSION
 ##{ $plugin->get_prereqs ##}

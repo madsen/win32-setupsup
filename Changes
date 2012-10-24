@@ -1,6 +1,6 @@
 Revision history for Perl extension Win32::Setupsup.
 
-1.11  NOT
+1.11  October 24, 2012
 	- document that Exporter version 5.57 or later is required
 	  (it has been since Win32::Setupsup 1.03, but wasn't documented)
 

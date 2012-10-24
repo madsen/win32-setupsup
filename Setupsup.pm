@@ -33,13 +33,13 @@ use strict;
 use warnings;
 
 use Carp 'croak';
-use Exporter 'import';
+use Exporter 5.57 'import';     # exported import method
 use Win32API::Registry qw(RegCloseKey RegCreateKeyEx RegOpenKeyEx
                           RegQueryValueEx RegSetValueEx regLastError
                           :KEY_ :HKEY_ :REG_);
 use XSLoader ();
 
-our $VERSION = '1.10';
+our $VERSION = '1.11';
 # This file is part of {{$dist}} {{$dist_version}} ({{$date}})
 
 croak("The Win32::Setupsup module works only on Windows NT")

@@ -1,5 +1,10 @@
 Revision history for Perl extension Win32::Setupsup.
 
+1.11  NOT
+	- document that Exporter version 5.57 or later is required
+	  (it has been since Win32::Setupsup 1.03, but wasn't documented)
+
+
 1.10  September 16, 2012
 	- port to Strawberry Perl and gcc
 	- fix old C++ syntax to work with Visual C++ 2010

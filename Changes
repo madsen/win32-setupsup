@@ -1,6 +1,7 @@
 Revision history for Perl extension Win32::Setupsup.
 
-1.12  NOT
+1.12  2013-12-14
+	- no functional changes
 	- fix build failure with Strawberry Perl 5.10.0.6
 
 

@@ -1,5 +1,9 @@
 Revision history for Perl extension Win32::Setupsup.
 
+1.12  NOT
+	- fix build failure with Strawberry Perl 5.10.0.6
+
+
 1.11  2012-10-24
 	- document that Exporter version 5.57 or later is required
 	  (it has been since Win32::Setupsup 1.03, but wasn't documented)

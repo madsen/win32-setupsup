@@ -238,6 +238,11 @@
     }                                                           \
   }
 
+// In case windows.h didn't define it:
+#ifndef SECURITY_NT_NON_UNIQUE
+#define SECURITY_NT_NON_UNIQUE          (0x00000015L)
+#endif
+
 
 ///////////////////////////////////////////////////////////////////////////////
 //

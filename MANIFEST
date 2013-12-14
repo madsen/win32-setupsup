@@ -21,8 +21,8 @@ t/00-load.t
 t/10-registry.t
 t/20-constants.t
 t/30-lasterror.t
-t/release-pod-coverage.t
-t/release-pod-syntax.t
 usererror.h
 wstring.cpp
 wstring.h
+xt/release/pod-coverage.t
+xt/release/pod-syntax.t

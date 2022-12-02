@@ -22,6 +22,7 @@ BEGIN { use_ok('Win32::Setupsup') }
 
 use Win32::TieRegistry ( Delimiter=>"/", ArrayValues=>0 );
 
+$Registry = $Registry->Open('', {Access => KEY_READ} ); # RT#102385
 my $winReg = $Registry->{'LMachine/Software/Microsoft/Windows/CurrentVersion/'};
 
 my $value;
